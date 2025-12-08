@@ -99,6 +99,17 @@ export default function Header() {
           }
         }
         
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
         .ripple {
           position: absolute;
           border-radius: 50%;
@@ -107,10 +118,20 @@ export default function Header() {
           animation: ripple 0.6s linear;
           pointer-events: none;
         }
+        
+        .mobile-menu-open {
+          animation: slideDown 0.3s ease-out forwards;
+        }
+        
+        @media (max-width: 992px) {
+          body.menu-open {
+            overflow: hidden;
+          }
+        }
       `}</style>
       
-      <header className="bg-white shadow-[0_2px_10px_0_rgba(0,0,0,0.1)] sticky top-0 z-100">
-        <div className="flex justify-between items-center py-[15px] px-5 max-w-[1200px] mx-auto">
+      <header className="bg-white shadow-[0_2px_10px_0_rgba(0,0,0,0.1)] sticky top-0 z-100 relative">
+        <div className="flex justify-between items-center py-[15px] px-5 max-w-[1200px] mx-auto relative z-50">
           <div className="flex items-center">
             <div className="flex items-center text-xl font-semibold text-[#333]">
               <i className="w-6 h-6 rounded-full bg-[#4FC3F7] flex items-center justify-center mr-2"></i>
@@ -124,7 +145,7 @@ export default function Header() {
           <nav 
             ref={navRef}
             onMouseLeave={handleNavLeave}
-            className={`relative flex items-center gap-[5px] bg-white/90 backdrop-blur-[10px] p-[5px] rounded-[50px] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] border border-white/30 lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:flex-row flex-col lg:static absolute top-full left-0 right-0 lg:rounded-[50px] rounded-none lg:p-[5px] p-5 lg:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)]`}
+            className={`relative flex items-center gap-[5px] bg-white backdrop-blur-[10px] p-[5px] rounded-[50px] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] border border-white/30 lg:flex ${isMenuOpen ? 'flex mobile-menu-open' : 'hidden'} lg:flex-row flex-col lg:static absolute top-[calc(100%+12px)] left-4 right-4 lg:rounded-[50px] rounded-2xl lg:p-[5px] py-6 px-3 lg:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)] lg:border-white/30 border-[#e5e7eb] lg:bg-white/90 bg-white max-h-[calc(100vh-100px)] overflow-y-auto`}
           >
             <div 
               className="absolute top-[5px] left-0 h-[calc(100%-10px)] bg-black/5 rounded-[50px] transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] z-0 pointer-events-none lg:block hidden"
@@ -137,7 +158,7 @@ export default function Header() {
             
             <a 
               href="/" 
-              className={`nav-link relative z-1 lg:py-2 py-3 lg:px-4 px-5 lg:rounded-[50px] rounded-lg no-underline font-medium transition-colors duration-300 flex items-center lg:justify-center justify-start overflow-hidden text-[14.4px] whitespace-nowrap hover:text-[#4FC3F7] ${isActive('/') ? 'active font-semibold text-[#4FC3F7]' : 'text-[#333]'}`}
+              className={`nav-link relative z-1 lg:py-2 py-3.5 lg:px-4 px-4 lg:rounded-[50px] rounded-xl no-underline font-medium transition-all duration-300 flex items-center lg:justify-center justify-start overflow-hidden lg:text-[14.4px] text-base whitespace-nowrap hover:text-[#4FC3F7] lg:w-auto w-full lg:hover:bg-transparent hover:bg-[#f9fafb] ${isActive('/') ? 'active font-semibold text-[#4FC3F7] lg:bg-transparent bg-[#eff6ff]' : 'text-[#333]'}`}
               onMouseEnter={handleLinkHover}
               onClick={(e) => {
                 createRipple(e);
@@ -149,7 +170,7 @@ export default function Header() {
             
             <a 
               href="/jobs" 
-              className={`nav-link relative z-1 lg:py-2 py-3 lg:px-4 px-5 lg:rounded-[50px] rounded-lg no-underline font-medium transition-colors duration-300 flex items-center lg:justify-center justify-start overflow-hidden text-[14.4px] whitespace-nowrap hover:text-[#4FC3F7] ${isActive('/jobs') ? 'active font-semibold text-[#4FC3F7]' : 'text-[#333]'}`}
+              className={`nav-link relative z-1 lg:py-2 py-3.5 lg:px-4 px-4 lg:rounded-[50px] rounded-xl no-underline font-medium transition-all duration-300 flex items-center lg:justify-center justify-start overflow-hidden lg:text-[14.4px] text-base whitespace-nowrap hover:text-[#4FC3F7] lg:w-auto w-full lg:hover:bg-transparent hover:bg-[#f9fafb] ${isActive('/jobs') ? 'active font-semibold text-[#4FC3F7] lg:bg-transparent bg-[#eff6ff]' : 'text-[#333]'}`}
               onMouseEnter={handleLinkHover}
               onClick={(e) => {
                 createRipple(e);
@@ -161,7 +182,7 @@ export default function Header() {
             
             <a 
               href="/company-details" 
-              className={`nav-link relative z-1 lg:py-2 py-3 lg:px-4 px-5 lg:rounded-[50px] rounded-lg no-underline font-medium transition-colors duration-300 flex items-center lg:justify-center justify-start overflow-hidden text-[14.4px] whitespace-nowrap hover:text-[#4FC3F7] ${isActive('/company-details') ? 'active font-semibold text-[#4FC3F7]' : 'text-[#333]'}`}
+              className={`nav-link relative z-1 lg:py-2 py-3.5 lg:px-4 px-4 lg:rounded-[50px] rounded-xl no-underline font-medium transition-all duration-300 flex items-center lg:justify-center justify-start overflow-hidden lg:text-[14.4px] text-base whitespace-nowrap hover:text-[#4FC3F7] lg:w-auto w-full lg:hover:bg-transparent hover:bg-[#f9fafb] ${isActive('/company-details') ? 'active font-semibold text-[#4FC3F7] lg:bg-transparent bg-[#eff6ff]' : 'text-[#333]'}`}
               onMouseEnter={handleLinkHover}
               onClick={(e) => {
                 createRipple(e);
@@ -173,7 +194,7 @@ export default function Header() {
             
             <a 
               href="/about" 
-              className={`nav-link relative z-1 lg:py-2 py-3 lg:px-4 px-5 lg:rounded-[50px] rounded-lg no-underline font-medium transition-colors duration-300 flex items-center lg:justify-center justify-start overflow-hidden text-[14.4px] whitespace-nowrap hover:text-[#4FC3F7] ${isActive('/about') ? 'active font-semibold text-[#4FC3F7]' : 'text-[#333]'}`}
+              className={`nav-link relative z-1 lg:py-2 py-3.5 lg:px-4 px-4 lg:rounded-[50px] rounded-xl no-underline font-medium transition-all duration-300 flex items-center lg:justify-center justify-start overflow-hidden lg:text-[14.4px] text-base whitespace-nowrap hover:text-[#4FC3F7] lg:w-auto w-full lg:hover:bg-transparent hover:bg-[#f9fafb] ${isActive('/about') ? 'active font-semibold text-[#4FC3F7] lg:bg-transparent bg-[#eff6ff]' : 'text-[#333]'}`}
               onMouseEnter={handleLinkHover}
               onClick={(e) => {
                 createRipple(e);
@@ -185,7 +206,7 @@ export default function Header() {
             
             <a 
               href="/contact" 
-              className={`nav-link relative z-1 lg:py-2 py-3 lg:px-4 px-5 lg:rounded-[50px] rounded-lg no-underline font-medium transition-colors duration-300 flex items-center lg:justify-center justify-start overflow-hidden text-[14.4px] whitespace-nowrap hover:text-[#4FC3F7] ${isActive('/contact') ? 'active font-semibold text-[#4FC3F7]' : 'text-[#333]'}`}
+              className={`nav-link relative z-1 lg:py-2 py-3.5 lg:px-4 px-4 lg:rounded-[50px] rounded-xl no-underline font-medium transition-all duration-300 flex items-center lg:justify-center justify-start overflow-hidden lg:text-[14.4px] text-base whitespace-nowrap hover:text-[#4FC3F7] lg:w-auto w-full lg:hover:bg-transparent hover:bg-[#f9fafb] ${isActive('/contact') ? 'active font-semibold text-[#4FC3F7] lg:bg-transparent bg-[#eff6ff]' : 'text-[#333]'}`}
               onMouseEnter={handleLinkHover}
               onClick={(e) => {
                 createRipple(e);
@@ -197,7 +218,7 @@ export default function Header() {
             
             <a 
               href="/faq" 
-              className={`nav-link relative z-1 lg:py-2 py-3 lg:px-4 px-5 lg:rounded-[50px] rounded-lg no-underline font-medium transition-colors duration-300 flex items-center lg:justify-center justify-start overflow-hidden text-[14.4px] whitespace-nowrap hover:text-[#4FC3F7] ${isActive('/faq') ? 'active font-semibold text-[#4FC3F7]' : 'text-[#333]'}`}
+              className={`nav-link relative z-1 lg:py-2 py-3.5 lg:px-4 px-4 lg:rounded-[50px] rounded-xl no-underline font-medium transition-all duration-300 flex items-center lg:justify-center justify-start overflow-hidden lg:text-[14.4px] text-base whitespace-nowrap hover:text-[#4FC3F7] lg:w-auto w-full lg:hover:bg-transparent hover:bg-[#f9fafb] ${isActive('/faq') ? 'active font-semibold text-[#4FC3F7] lg:bg-transparent bg-[#eff6ff]' : 'text-[#333]'}`}
               onMouseEnter={handleLinkHover}
               onClick={(e) => {
                 createRipple(e);
@@ -207,9 +228,11 @@ export default function Header() {
               FAQ
             </a>
             
+            <div className="lg:hidden w-full h-px bg-gradient-to-r from-transparent via-[#e5e7eb] to-transparent my-2"></div>
+            
             <a 
               href="/login" 
-              className={`nav-link relative z-1 lg:py-2 py-3 lg:px-4 px-5 lg:rounded-[50px] rounded-lg no-underline font-medium transition-colors duration-300 flex items-center lg:justify-center justify-start overflow-hidden text-[14.4px] whitespace-nowrap hover:text-[#4FC3F7] ${isActive('/login') ? 'active font-semibold text-[#4FC3F7]' : 'text-[#333]'}`}
+              className={`nav-link relative z-1 lg:py-2 py-3.5 lg:px-4 px-4 lg:rounded-[50px] rounded-xl no-underline font-medium transition-all duration-300 flex items-center lg:justify-center justify-start overflow-hidden lg:text-[14.4px] text-base whitespace-nowrap hover:text-[#4FC3F7] lg:w-auto w-full lg:hover:bg-transparent hover:bg-[#f9fafb] ${isActive('/login') ? 'active font-semibold text-[#4FC3F7] lg:bg-transparent bg-[#eff6ff]' : 'text-[#333]'}`}
               onMouseEnter={handleLinkHover}
               onClick={(e) => {
                 createRipple(e);
@@ -221,7 +244,7 @@ export default function Header() {
             
             <a 
               href="/register" 
-              className="btn-signup relative z-1 rounded-[1584px] border-2 overflow-hidden py-[12.8px] px-12 bg-black text-white cursor-pointer font-black leading-6 uppercase no-underline transition-all duration-200 flex items-center justify-center whitespace-nowrap hover:text-white group"
+              className="btn-signup relative z-1 lg:rounded-[1584px] rounded-xl border-2 overflow-hidden lg:py-[12.8px] py-3.5 lg:px-12 px-4 bg-black text-white cursor-pointer lg:font-black font-bold leading-6 lg:uppercase capitalize no-underline transition-all duration-200 flex items-center justify-center whitespace-nowrap hover:text-white hover:bg-[#1a1a1a] group lg:w-auto w-full lg:mt-0 mt-3"
               onClick={(e) => {
                 createRipple(e);
                 setIsMenuOpen(false);
