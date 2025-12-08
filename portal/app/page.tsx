@@ -408,7 +408,7 @@ export default function Home() {
           >
             Trending Job Categories
           </Typography>
-          <Box sx={{ overflow: 'hidden', position: 'relative' }}>
+          <Box sx={{ overflow: 'hidden', position: 'relative', padding: '20px' }}>
             <Box
               ref={categoriesScrollerRef}
               sx={{
@@ -416,6 +416,7 @@ export default function Home() {
                 gap: '16px',
                 width: 'max-content',
                 alignItems: 'center',
+                padding: '16px',
               }}
             >
               {[...categories, ...categories].map((category, index) => (
@@ -592,7 +593,7 @@ export default function Home() {
             <TrendingUpIcon sx={{ fontSize: { xs: 32, md: 40 }, color: 'primary.main' }} />
             Connect with Top Companies
           </Typography>
-          <Box sx={{ overflow: 'hidden', position: 'relative' }}>
+          <Box sx={{ overflow: 'hidden', position: 'relative', paddingBottom: '24px' }}>
             <Box
               ref={companiesScrollerRef}
               sx={{
@@ -600,6 +601,7 @@ export default function Home() {
                 gap: '32px',
                 width: 'max-content',
                 alignItems: 'center',
+                paddingBottom: '16px',
               }}
             >
               {[...companies, ...companies].map((company, index) => (
