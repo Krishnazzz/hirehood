@@ -186,7 +186,7 @@ export default function Header() {
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: 0.5,
+                gap: '4px',
                 bgcolor: 'rgba(255,255,255,0.9)',
                 backdropFilter: 'blur(10px)',
                 padding: '6px',
@@ -194,7 +194,7 @@ export default function Header() {
                 boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)',
                 border: '1px solid rgba(255,255,255,0.3)',
                 position: 'relative',
-                minHeight: 52,
+                height: '52px',
               }}
             >
               <Box
@@ -202,7 +202,7 @@ export default function Header() {
                   position: 'absolute',
                   top: '6px',
                   left: 0,
-                  height: 'calc(100% - 12px)',
+                  height: '40px',
                   bgcolor: 'primary.lighter',
                   borderRadius: '50px',
                   transition: 'all 0.3s cubic-bezier(0.25,1,0.5,1)',
@@ -218,27 +218,32 @@ export default function Header() {
                   key={item.name}
                   component={Link}
                   href={item.href}
+                  disableRipple
                   className={`nav-link ${isActive(item.href) ? 'active' : ''}`}
                   onMouseEnter={handleLinkHover as any}
-                  onClick={(e: any) => {
-                    createRipple(e);
-                  }}
                   sx={{
                     position: 'relative',
                     zIndex: 1,
-                    minHeight: 40,
+                    height: '40px',
                     paddingTop: '8px',
                     paddingBottom: '8px',
                     paddingLeft: '20px',
                     paddingRight: '20px',
+                    minWidth: 'auto',
                     borderRadius: '50px',
                     textTransform: 'none',
-                    fontWeight: isActive(item.href) ? 600 : 500,
+                    fontWeight: 600,
                     fontSize: '0.9rem',
+                    lineHeight: '1.5',
+                    whiteSpace: 'nowrap',
                     color: isActive(item.href) ? 'primary.main' : 'text.primary',
                     '&:hover': { 
                       color: 'primary.main',
                       bgcolor: 'transparent',
+                    },
+                    '&:active': {
+                      transform: 'none',
+                      boxShadow: 'none',
                     },
                     transition: 'color 0.3s',
                   }}
