@@ -1,7 +1,28 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Button,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Container,
+  useTheme,
+  useMediaQuery,
+  Chip,
+  Avatar,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import WorkIcon from '@mui/icons-material/Work';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -17,6 +38,9 @@ export default function Header() {
   const [highlightStyle, setHighlightStyle] = useState({ width: 0, left: 0, opacity: 0 });
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const router = useRouter();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   useEffect(() => {
     const updateHighlight = (element: HTMLElement) => {
@@ -99,172 +123,271 @@ export default function Header() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <>
-      <style jsx>{`
-        @keyframes ripple {
-          to {
-            transform: scale(4);
-            opacity: 0;
-          }
-        }
-        
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .ripple {
-          position: absolute;
-          border-radius: 50%;
-          background: rgba(79, 195, 247, 0.3);
-          transform: scale(0);
-          animation: ripple 0.6s linear;
-          pointer-events: none;
-        }
-        
-        .mobile-menu-open {
-          animation: slideDown 0.3s ease-out forwards;
-        }
-        
-        @media (max-width: 992px) {
-          body.menu-open {
-            overflow: hidden;
-          }
-        }
-      `}</style>
-      
-      <header className="bg-white shadow-[0_2px_10px_0_rgba(0,0,0,0.1)] sticky top-0 z-100">
-        <div className="max-w-[1200px] mx-auto px-5">
-          <div className="flex justify-between items-center h-16">
-            {/* Mobile menu button */}
-            <div className="lg:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-[#333] hover:bg-[#f3f4f6] hover:text-[#4FC3F7] transition-colors duration-300"
-              >
-                <span className="sr-only">Open main menu</span>
-                {isMenuOpen ? (
-                  <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                  </svg>
-                )}
-              </button>
-            </div>
+    <AppBar 
+      position="sticky" 
+      elevation={2}
+      sx={{ 
+        bgcolor: 'white', 
+        color: 'text.primary',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid',
+        borderColor: 'divider',
+      }}
+    >
+      <Container maxWidth="lg">
+        <Toolbar disableGutters sx={{ minHeight: { xs: 64, md: 70 } }}>
+          {/* Mobile menu button */}
+          {isMobile && (
+            <IconButton
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              sx={{ 
+                mr: 2, 
+                color: 'primary.main',
+                '&:hover': {
+                  bgcolor: 'primary.lighter',
+                  color: 'primary.dark',
+                }
+              }}
+            >
+              {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            </IconButton>
+          )}
 
-            {/* Logo */}
-            <div className="flex items-center lg:flex-1">
-              <div className="flex items-center">
-                <i className="w-6 h-6 rounded-full bg-[#4FC3F7] flex items-center justify-center"></i>
-                <a href="/" className="ml-2 text-xl font-semibold text-[#4FC3F7] hover:opacity-80 transition-opacity">
-                  Hire Hood
-                </a>
-              </div>
-            </div>
+          {/* Logo */}
+          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+            <Avatar sx={{ bgcolor: 'primary.main', mr: 1.5, width: 32, height: 32 }}>
+              <WorkIcon sx={{ fontSize: 20 }} />
+            </Avatar>
+            <Button
+              component={Link}
+              href="/"
+              sx={{
+                fontSize: '1.25rem',
+                fontWeight: 700,
+                color: 'primary.main',
+                textTransform: 'none',
+                '&:hover': { 
+                  bgcolor: 'transparent', 
+                  color: 'primary.dark',
+                }
+              }}
+            >
+              Hire Hood
+            </Button>
+          </Box>
 
-            {/* Desktop Navigation */}
-            <nav 
+          {/* Desktop Navigation */}
+          {!isMobile && (
+            <Box
+              component="nav"
               ref={navRef}
               onMouseLeave={handleNavLeave}
-              className="hidden lg:flex items-center gap-[5px] bg-white/90 backdrop-blur-[10px] p-[5px] rounded-[50px] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] border border-white/30 relative"
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.5,
+                bgcolor: 'rgba(255,255,255,0.9)',
+                backdropFilter: 'blur(10px)',
+                p: 0.75,
+                borderRadius: '50px',
+                boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)',
+                border: '1px solid rgba(255,255,255,0.3)',
+                position: 'relative',
+              }}
             >
-              <div 
-                className="absolute top-[5px] left-0 h-[calc(100%-10px)] bg-black/5 rounded-[50px] transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] z-0 pointer-events-none"
-                style={{
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '6px',
+                  left: 0,
+                  height: 'calc(100% - 12px)',
+                  bgcolor: 'primary.lighter',
+                  borderRadius: '50px',
+                  transition: 'all 0.3s cubic-bezier(0.25,1,0.5,1)',
+                  pointerEvents: 'none',
                   width: `${highlightStyle.width}px`,
                   transform: `translateX(${highlightStyle.left}px)`,
-                  opacity: highlightStyle.opacity
+                  opacity: highlightStyle.opacity,
                 }}
-              ></div>
+              />
 
               {navigation.map((item) => (
-                <a
+                <Button
                   key={item.name}
+                  component={Link}
                   href={item.href}
-                  className={`nav-link relative z-1 py-2 px-4 rounded-[50px] no-underline font-medium transition-colors duration-300 flex items-center justify-center overflow-hidden text-[14.4px] whitespace-nowrap hover:text-[#4FC3F7] ${
-                    isActive(item.href) ? 'active font-semibold text-[#4FC3F7]' : 'text-[#333]'
-                  }`}
-                  onMouseEnter={handleLinkHover}
-                  onClick={(e) => createRipple(e)}
+                  className={`nav-link ${isActive(item.href) ? 'active' : ''}`}
+                  onMouseEnter={handleLinkHover as any}
+                  onClick={(e: any) => {
+                    createRipple(e);
+                    router.push(item.href);
+                  }}
+                  sx={{
+                    position: 'relative',
+                    zIndex: 1,
+                    py: 1,
+                    px: 2.5,
+                    borderRadius: '50px',
+                    textTransform: 'none',
+                    fontWeight: isActive(item.href) ? 600 : 500,
+                    fontSize: '0.9rem',
+                    color: isActive(item.href) ? 'primary.main' : 'text.primary',
+                    '&:hover': { 
+                      color: 'primary.main',
+                      bgcolor: 'transparent',
+                    },
+                    transition: 'color 0.3s',
+                  }}
                 >
                   {item.name}
-                </a>
+                </Button>
               ))}
-            </nav>
+            </Box>
+          )}
 
-            {/* Auth Buttons Desktop */}
-            <div className="hidden lg:flex items-center gap-3 ml-6">
-              <a
+          {/* Auth Buttons Desktop */}
+          {!isMobile && (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, ml: 3 }}>
+              <Button
+                component={Link}
                 href="/login"
-                className="py-2 px-6 rounded-[50px] text-[#333] hover:text-[#4FC3F7] font-medium transition-colors duration-300"
+                sx={{
+                  px: 3,
+                  py: 1,
+                  borderRadius: '50px',
+                  color: 'text.primary',
+                  fontWeight: 500,
+                  textTransform: 'none',
+                  '&:hover': { 
+                    color: 'primary.main', 
+                    bgcolor: 'primary.lighter',
+                  },
+                  transition: 'all 0.2s ease',
+                }}
               >
                 Login
-              </a>
-              <a
+              </Button>
+              <Button
+                component={Link}
                 href="/register"
-                className="py-[12.8px] px-12 rounded-[1584px] bg-black text-white font-black uppercase hover:bg-[#1a1a1a] transition-all duration-200 group relative overflow-hidden border-2"
+                variant="contained"
+                color="primary"
+                sx={{
+                  px: 4,
+                  py: 1.5,
+                  borderRadius: '50px',
+                  fontWeight: 600,
+                  textTransform: 'none',
+                  boxShadow: 2,
+                  '&:hover': {
+                    transform: 'translateY(-2px)',
+                    boxShadow: 4,
+                  },
+                  transition: 'all 0.3s ease',
+                }}
               >
-                <span className="mix-blend-difference relative z-10">Signup</span>
-                <span className="absolute inset-0 bg-[linear-gradient(90deg,#fff_25%,transparent_0,transparent_50%,#fff_0,#fff_75%,transparent_0)] translate-y-full transition-transform duration-200 group-hover:translate-y-0"></span>
-                <span className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0,transparent_25%,#fff_0,#fff_50%,transparent_0,transparent_75%,#fff_0)] -translate-y-full transition-transform duration-200 group-hover:translate-y-0 -z-1"></span>
-              </a>
-            </div>
-          </div>
-        </div>
+                Sign Up
+              </Button>
+            </Box>
+          )}
+        </Toolbar>
+      </Container>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden mobile-menu-open">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
+      {/* Mobile Navigation Drawer */}
+      <Drawer
+        anchor="left"
+        open={isMenuOpen && isMobile}
+        onClose={() => setIsMenuOpen(false)}
+        sx={{
+          '& .MuiDrawer-paper': {
+            width: 280,
+            bgcolor: 'background.paper',
+          },
+        }}
+      >
+        <Box sx={{ p: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 3, pb: 2, borderBottom: '1px solid', borderColor: 'divider' }}>
+            <Avatar sx={{ bgcolor: 'primary.main', mr: 1.5 }}>
+              <WorkIcon />
+            </Avatar>
+            <Box sx={{ fontSize: '1.25rem', fontWeight: 700, color: 'primary.main' }}>
+              Hire Hood
+            </Box>
+          </Box>
+          
+          <List>
+            {navigation.map((item) => (
+              <ListItem key={item.name} disablePadding>
+                <ListItemButton
+                  component={Link}
                   href={item.href}
-                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
-                    isActive(item.href)
-                      ? 'bg-[#eff6ff] text-[#4FC3F7] font-semibold'
-                      : 'text-[#333] hover:bg-[#f9fafb] hover:text-[#4FC3F7]'
-                  }`}
                   onClick={() => setIsMenuOpen(false)}
+                  sx={{
+                    borderRadius: 2,
+                    mb: 0.5,
+                    bgcolor: isActive(item.href) ? 'primary.lighter' : 'transparent',
+                    '&:hover': { 
+                      bgcolor: isActive(item.href) ? 'primary.lighter' : 'action.hover',
+                    },
+                  }}
                 >
-                  {item.name}
-                </a>
-              ))}
+                  <ListItemText
+                    primary={item.name}
+                    sx={{
+                      '& .MuiTypography-root': {
+                        fontWeight: isActive(item.href) ? 600 : 500,
+                        color: isActive(item.href) ? 'primary.main' : 'text.primary',
+                      },
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
 
-              <div className="h-px bg-linear-to-r from-transparent via-[#e5e7eb] to-transparent my-2"></div>
-
-              <a
-                href="/login"
-                className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
-                  isActive('/login')
-                    ? 'bg-[#eff6ff] text-[#4FC3F7] font-semibold'
-                    : 'text-[#333] hover:bg-[#f9fafb] hover:text-[#4FC3F7]'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Login
-              </a>
-              
-              <a
-                href="/register"
-                className="block mt-3 py-3.5 px-4 rounded-xl bg-black text-white font-bold text-center hover:bg-[#1a1a1a] transition-all duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Signup
-              </a>
-            </div>
-          </div>
-        )}
-      </header>
-    </>
+          <Box sx={{ borderTop: '1px solid', borderColor: 'divider', mt: 2, pt: 2 }}>
+            <Button
+              component={Link}
+              href="/login"
+              fullWidth
+              sx={{
+                mb: 1.5,
+                py: 1.5,
+                borderRadius: 2,
+                textTransform: 'none',
+                fontWeight: 600,
+                color: 'text.primary',
+                '&:hover': { 
+                  bgcolor: 'primary.lighter', 
+                  color: 'primary.main',
+                },
+              }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Login
+            </Button>
+            <Button
+              component={Link}
+              href="/register"
+              fullWidth
+              variant="contained"
+              color="primary"
+              sx={{
+                py: 1.5,
+                borderRadius: 2,
+                fontWeight: 600,
+                textTransform: 'none',
+                '&:hover': { 
+                  bgcolor: 'primary.dark',
+                },
+              }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Sign Up
+            </Button>
+          </Box>
+        </Box>
+      </Drawer>
+    </AppBar>
   );
 }
