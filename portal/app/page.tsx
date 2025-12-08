@@ -233,7 +233,15 @@ export default function Home() {
                 marginRight: 'auto',
                 padding: '8px',
                 borderRadius: '12px',
-                backgroundColor: 'white',
+                background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+                border: '2px solid transparent',
+                transition: 'all 0.4s ease',
+                '&:hover': {
+                  border: '2px solid',
+                  borderColor: 'primary.light',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+                  transform: 'translateY(-2px)',
+                },
               }}
             >
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
@@ -292,9 +300,13 @@ export default function Home() {
                     minWidth: 140,
                     fontWeight: 600,
                     textTransform: 'none',
-                    boxShadow: 2,
+                    background: 'linear-gradient(135deg, #1976d2 0%, #1565c0 100%)',
+                    boxShadow: '0 4px 12px rgba(25,118,210,0.3)',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
-                      boxShadow: 4,
+                      background: 'linear-gradient(135deg, #1565c0 0%, #0d47a1 100%)',
+                      boxShadow: '0 6px 20px rgba(25,118,210,0.4)',
+                      transform: 'translateY(-2px)',
                     },
                   }}
                 >
@@ -318,12 +330,33 @@ export default function Home() {
                     elevation={2}
                     sx={{
                       cursor: 'pointer',
-                      transition: 'all 0.3s',
-                      borderRadius: '12px',
+                      transition: 'all 0.4s ease',
+                      borderRadius: '16px',
                       height: '100%',
+                      background: 'linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%)',
+                      border: '1px solid',
+                      borderColor: 'rgba(0,0,0,0.08)',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: '4px',
+                        background: 'linear-gradient(90deg, #1976d2, #42a5f5)',
+                        transform: 'scaleX(0)',
+                        transformOrigin: 'left',
+                        transition: 'transform 0.4s ease',
+                      },
                       '&:hover': {
-                        transform: 'translateY(-8px)',
-                        boxShadow: 6,
+                        transform: 'translateY(-12px)',
+                        boxShadow: '0 12px 32px rgba(0,0,0,0.15)',
+                        borderColor: 'primary.main',
+                        '&::before': {
+                          transform: 'scaleX(1)',
+                        },
                       },
                     }}
                   >
@@ -392,23 +425,28 @@ export default function Home() {
                   label={category.name}
                   onClick={() => {}}
                   sx={{
-                    paddingTop: '20px',
-                    paddingBottom: '20px',
-                    paddingLeft: '16px',
-                    paddingRight: '16px',
+                    height: '48px',
+                    padding: '8px 16px',
                     fontSize: '1rem',
                     fontWeight: 500,
-                    backgroundColor: 'primary.light',
+                    background: 'linear-gradient(135deg, #42a5f5 0%, #1976d2 100%)',
                     color: 'white',
-                    boxShadow: 2,
-                    transition: 'all 0.3s',
+                    boxShadow: '0 4px 12px rgba(25,118,210,0.25)',
+                    transition: 'all 0.3s ease',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    '& .MuiChip-label': {
+                      padding: '0 12px',
+                    },
                     '& .MuiChip-icon': {
                       color: 'white',
                       fontSize: 24,
+                      marginLeft: '8px',
+                      marginRight: '-4px',
                     },
                     '&:hover': {
-                      backgroundColor: 'primary.dark',
-                      boxShadow: 4,
+                      background: 'linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%)',
+                      boxShadow: '0 6px 20px rgba(25,118,210,0.4)',
+                      transform: 'translateY(-4px) scale(1.05)',
                     },
                   }}
                 />
@@ -422,11 +460,17 @@ export default function Home() {
           <Paper
             elevation={2}
             sx={{
-              borderRadius: '12px',
+              borderRadius: '20px',
               overflow: 'hidden',
-              backgroundColor: 'background.default',
-              border: '1px solid',
-              borderColor: 'divider',
+              background: 'linear-gradient(135deg, rgba(100, 160, 220, 0.12) 0%, rgba(70, 130, 200, 0.25) 50%, rgba(50, 100, 180, 0.18) 100%)',
+              border: '2px solid',
+              borderColor: 'rgba(100, 160, 220, 0.4)',
+              transition: 'all 0.4s ease',
+              '&:hover': {
+                borderColor: 'rgba(70, 130, 200, 0.6)',
+                boxShadow: '0 12px 32px rgba(70, 130, 200, 0.2)',
+                transform: 'translateY(-4px)',
+              },
             }}
           >
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
@@ -472,9 +516,18 @@ export default function Home() {
                           sx={{
                             textDecoration: 'none',
                             cursor: 'pointer',
-                            transition: 'all 0.3s',
+                            transition: 'all 0.3s ease',
+                            background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+                            border: '1px solid',
+                            borderColor: 'rgba(0,0,0,0.08)',
                             '&:hover': {
-                              boxShadow: 4,
+                              boxShadow: '0 8px 24px rgba(25,118,210,0.15)',
+                              transform: 'translateY(-4px)',
+                              borderColor: 'primary.light',
+                              background: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)',
+                              '& .MuiSvgIcon-root': {
+                                transform: 'translateX(4px)',
+                              },
                             },
                           }}
                         >
@@ -490,7 +543,7 @@ export default function Home() {
                               <Typography variant="body2" color="text.secondary">
                                 {role.jobs} Jobs
                               </Typography>
-                              <ArrowForwardIcon sx={{ fontSize: 16, color: 'primary.main' }} />
+                              <ArrowForwardIcon sx={{ fontSize: 16, color: 'primary.main', transition: 'transform 0.3s ease' }} />
                             </Box>
                           </CardContent>
                         </Card>
@@ -560,17 +613,35 @@ export default function Home() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderRadius: '12px',
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    backgroundColor: 'white',
-                    transition: 'all 0.3s',
+                    borderRadius: '16px',
+                    border: '2px solid',
+                    borderColor: 'rgba(0,0,0,0.06)',
+                    background: 'linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%)',
+                    transition: 'all 0.4s ease',
                     cursor: 'pointer',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      top: 0,
+                      left: '-100%',
+                      width: '100%',
+                      height: '100%',
+                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
+                      transition: 'left 0.6s ease',
+                    },
                     '&:hover': {
                       borderColor: 'primary.main',
-                      boxShadow: 3,
+                      boxShadow: '0 12px 32px rgba(25,118,210,0.15)',
+                      transform: 'translateY(-8px) scale(1.02)',
+                      background: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)',
+                      '&::before': {
+                        left: '100%',
+                      },
                       '& img': {
                         filter: 'grayscale(0%)',
+                        transform: 'scale(1.1)',
                       },
                     },
                   }}
@@ -586,7 +657,7 @@ export default function Home() {
                       height: 'auto',
                       objectFit: 'contain',
                       filter: 'grayscale(100%)',
-                      transition: 'filter 0.3s',
+                      transition: 'all 0.4s ease',
                     }}
                   />
                 </Paper>
