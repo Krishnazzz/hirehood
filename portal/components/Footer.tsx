@@ -1,321 +1,141 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function Footer() {
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  const testimonials = [
+    {
+      text: "Hire Hood helped me find my dream job! The platform is so different.",
+      author: "Sarah K.",
+      image: "https://via.placeholder.com/40x40"
+    },
+    {
+      text: "Amazing experience! Found my perfect role within weeks.",
+      author: "John D.",
+      image: "https://via.placeholder.com/40x40"
+    },
+    {
+      text: "The best job platform I've ever used. Highly recommended!",
+      author: "Emily R.",
+      image: "https://via.placeholder.com/40x40"
+    }
+  ];
+
   return (
-    <footer style={{
-      background: 'rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box',
-      borderTop: '0.666667px solid rgb(238, 238, 238)',
-      padding: '60px 0px 30px',
-      margin: '0px',
-      boxSizing: 'border-box'
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0px auto',
-        padding: '0px 20px',
-        boxSizing: 'border-box'
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '378.177px 189.094px 189.083px 283.635px',
-          gap: '40px',
-          marginBottom: '40px',
-          margin: '0px 0px 40px',
-          padding: '0px',
-          boxSizing: 'border-box'
-        }}>
-          <div style={{margin: '0px', padding: '0px', boxSizing: 'border-box'}}>
-            <div style={{margin: '0px', padding: '0px', boxSizing: 'border-box'}}>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                fontSize: '20px',
-                fontWeight: 600,
-                color: 'rgb(51, 51, 51)',
-                marginBottom: '15px',
-                margin: '0px 0px 15px',
-                padding: '0px',
-                boxSizing: 'border-box'
-              }}>
-                <i style={{
-                  fontFamily: '"Font Awesome 6 Free"',
-                  fontWeight: 900,
-                  WebkitFontSmoothing: 'antialiased',
-                  display: 'flex',
-                  fontStyle: 'normal',
-                  fontVariant: 'normal',
-                  lineHeight: '16px',
-                  textRendering: 'auto',
-                  color: 'rgb(79, 195, 247)',
-                  marginRight: '8px',
-                  fontSize: '16px',
-                  background: 'rgb(79, 195, 247) none repeat scroll 0% 0% / auto padding-box border-box',
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: '50%',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '0px 8px 0px 0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}></i>
-                <span style={{margin: '0px', padding: '0px', boxSizing: 'border-box'}}>Hire Hood</span>
+    <footer className="bg-white border-t border-[#eee] pt-[60px] pb-[30px]">
+      <div className="max-w-[1200px] mx-auto px-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+          <div>
+            <div>
+              <div className="flex items-center text-xl font-semibold text-[#333] mb-[15px]">
+                <i className="w-6 h-6 rounded-full bg-[#4FC3F7] flex items-center justify-center mr-2"></i>
+                <span>Hire Hood</span>
               </div>
-              <p style={{
-                color: 'rgb(102, 102, 102)',
-                lineHeight: '25.6px',
-                margin: '0px',
-                padding: '0px',
-                boxSizing: 'border-box'
-              }}>Your trusted destination for exceptional careers opportunities across diverse fields.</p>
+              <p className="text-[#666] leading-[25.6px]">
+                Your trusted destination for exceptional careers opportunities across diverse fields.
+              </p>
             </div>
           </div>
           
-          <div style={{margin: '0px', padding: '0px', boxSizing: 'border-box'}}>
-            <h4 style={{
-              color: 'rgb(51, 51, 51)',
-              fontWeight: 600,
-              marginBottom: '20px',
-              margin: '0px 0px 20px',
-              padding: '0px',
-              boxSizing: 'border-box'
-            }}>Job Seekers</h4>
-            <ul style={{
-              listStyle: 'outside none none',
-              margin: '0px',
-              padding: '0px',
-              boxSizing: 'border-box'
-            }}>
-              <li style={{marginBottom: '10px', padding: '0px', boxSizing: 'border-box'}}>
-                <a href="#" style={{
-                  color: 'rgb(102, 102, 102)',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}>Browse Jobs</a>
+          <div>
+            <h4 className="text-[#333] font-semibold mb-5">Job Seekers</h4>
+            <ul className="list-none m-0 p-0">
+              <li className="mb-2.5">
+                <a href="#" className="text-[#666] no-underline transition-colors duration-300 hover:text-[#4FC3F7]">
+                  Browse Jobs
+                </a>
               </li>
-              <li style={{marginBottom: '10px', padding: '0px', boxSizing: 'border-box'}}>
-                <a href="#" style={{
-                  color: 'rgb(102, 102, 102)',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}>Browse Jobs</a>
+              <li className="mb-2.5">
+                <a href="#" className="text-[#666] no-underline transition-colors duration-300 hover:text-[#4FC3F7]">
+                  Browse Jobs
+                </a>
               </li>
-              <li style={{marginBottom: '10px', padding: '0px', boxSizing: 'border-box'}}>
-                <a href="#" style={{
-                  color: 'rgb(102, 102, 102)',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}>Saved Jobs</a>
+              <li className="mb-2.5">
+                <a href="#" className="text-[#666] no-underline transition-colors duration-300 hover:text-[#4FC3F7]">
+                  Saved Jobs
+                </a>
               </li>
-              <li style={{marginBottom: '10px', padding: '0px', boxSizing: 'border-box'}}>
-                <a href="#" style={{
-                  color: 'rgb(102, 102, 102)',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}>Legal</a>
+              <li className="mb-2.5">
+                <a href="#" className="text-[#666] no-underline transition-colors duration-300 hover:text-[#4FC3F7]">
+                  Legal
+                </a>
               </li>
             </ul>
           </div>
           
-          <div style={{margin: '0px', padding: '0px', boxSizing: 'border-box'}}>
-            <h4 style={{
-              color: 'rgb(51, 51, 51)',
-              fontWeight: 600,
-              marginBottom: '20px',
-              margin: '0px 0px 20px',
-              padding: '0px',
-              boxSizing: 'border-box'
-            }}>Employers</h4>
-            <ul style={{
-              listStyle: 'outside none none',
-              margin: '0px',
-              padding: '0px',
-              boxSizing: 'border-box'
-            }}>
-              <li style={{marginBottom: '10px', padding: '0px', boxSizing: 'border-box'}}>
-                <a href="#" style={{
-                  color: 'rgb(102, 102, 102)',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}>Post a Job</a>
+          <div>
+            <h4 className="text-[#333] font-semibold mb-5">Employers</h4>
+            <ul className="list-none m-0 p-0">
+              <li className="mb-2.5">
+                <a href="#" className="text-[#666] no-underline transition-colors duration-300 hover:text-[#4FC3F7]">
+                  Post a Job
+                </a>
               </li>
-              <li style={{marginBottom: '10px', padding: '0px', boxSizing: 'border-box'}}>
-                <a href="#" style={{
-                  color: 'rgb(102, 102, 102)',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}>Profile</a>
+              <li className="mb-2.5">
+                <a href="#" className="text-[#666] no-underline transition-colors duration-300 hover:text-[#4FC3F7]">
+                  Profile
+                </a>
               </li>
-              <li style={{marginBottom: '10px', padding: '0px', boxSizing: 'border-box'}}>
-                <a href="/404" style={{
-                  color: 'rgb(102, 102, 102)',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}>Saved Jobs</a>
+              <li className="mb-2.5">
+                <a href="/404" className="text-[#666] no-underline transition-colors duration-300 hover:text-[#4FC3F7]">
+                  Saved Jobs
+                </a>
               </li>
-              <li style={{marginBottom: '10px', padding: '0px', boxSizing: 'border-box'}}>
-                <a href="#" style={{
-                  color: 'rgb(102, 102, 102)',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}>Employer Dashboard</a>
+              <li className="mb-2.5">
+                <a href="#" className="text-[#666] no-underline transition-colors duration-300 hover:text-[#4FC3F7]">
+                  Employer Dashboard
+                </a>
               </li>
-              <li style={{marginBottom: '10px', padding: '0px', boxSizing: 'border-box'}}>
-                <a href="#" style={{
-                  color: 'rgb(102, 102, 102)',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}>Terms</a>
+              <li className="mb-2.5">
+                <a href="#" className="text-[#666] no-underline transition-colors duration-300 hover:text-[#4FC3F7]">
+                  Terms
+                </a>
               </li>
-              <li style={{marginBottom: '10px', padding: '0px', boxSizing: 'border-box'}}>
-                <a href="#" style={{
-                  color: 'rgb(102, 102, 102)',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box'
-                }}>Cookies</a>
+              <li className="mb-2.5">
+                <a href="#" className="text-[#666] no-underline transition-colors duration-300 hover:text-[#4FC3F7]">
+                  Cookies
+                </a>
               </li>
             </ul>
           </div>
           
-          <div style={{margin: '0px', padding: '0px', boxSizing: 'border-box'}}>
-            <h4 style={{
-              color: 'rgb(51, 51, 51)',
-              fontWeight: 600,
-              marginBottom: '20px',
-              margin: '0px 0px 20px',
-              padding: '0px',
-              boxSizing: 'border-box'
-            }}>Testimonials</h4>
-            <div style={{
-              background: 'rgb(248, 249, 252) none repeat scroll 0% 0% / auto padding-box border-box',
-              padding: '20px',
-              borderRadius: '10px',
-              position: 'relative',
-              margin: '0px',
-              boxSizing: 'border-box'
-            }}>
-              <p style={{
-                color: 'rgb(102, 102, 102)',
-                fontSize: '14px',
-                marginBottom: '15px',
-                lineHeight: '21px',
-                margin: '0px 0px 15px',
-                padding: '0px',
-                boxSizing: 'border-box'
-              }}>Hire Hood helped me find my dream job! The platform so any different. - Sarah K.</p>
-              <div style={{margin: '0px', padding: '0px', boxSizing: 'border-box'}}>
+          <div>
+            <h4 className="text-[#333] font-semibold mb-5">Testimonials</h4>
+            <div className="bg-[#f8f9fc] p-5 rounded-[10px] relative">
+              <p className="text-[#666] text-sm mb-[15px] leading-[21px]">
+                {testimonials[activeTestimonial].text} - {testimonials[activeTestimonial].author}
+              </p>
+              <div>
                 <img 
-                  src="https://via.placeholder.com/40x40" 
-                  alt="Sarah K." 
-                  style={{
-                    width: '40px',
-                    height: '25.5938px',
-                    borderRadius: '50%',
-                    marginBottom: '15px',
-                    margin: '0px 0px 15px',
-                    padding: '0px',
-                    boxSizing: 'border-box'
-                  }} 
+                  src={testimonials[activeTestimonial].image}
+                  alt={testimonials[activeTestimonial].author}
+                  className="w-10 h-10 rounded-full mb-[15px]"
                 />
               </div>
-              <div style={{
-                display: 'flex',
-                gap: '5px',
-                marginBottom: '10px',
-                margin: '0px 0px 10px',
-                padding: '0px',
-                boxSizing: 'border-box'
-              }}>
-                <span style={{
-                  background: 'rgb(79, 195, 247) none repeat scroll 0% 0% / auto padding-box border-box',
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box',
-                  cursor: 'pointer',
-                  transition: 'background 0.3s'
-                }}></span>
-                <span style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  background: 'rgb(221, 221, 221) none repeat scroll 0% 0% / auto padding-box border-box',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box',
-                  cursor: 'pointer',
-                  transition: 'background 0.3s'
-                }}></span>
-                <span style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  background: 'rgb(221, 221, 221) none repeat scroll 0% 0% / auto padding-box border-box',
-                  margin: '0px',
-                  padding: '0px',
-                  boxSizing: 'border-box',
-                  cursor: 'pointer',
-                  transition: 'background 0.3s'
-                }}></span>
+              <div className="flex gap-[5px] mb-2.5">
+                {testimonials.map((_, index) => (
+                  <span 
+                    key={index}
+                    onClick={() => setActiveTestimonial(index)}
+                    className={`w-2 h-2 rounded-full cursor-pointer transition-all duration-300 ${
+                      activeTestimonial === index ? 'bg-[#4FC3F7] w-6' : 'bg-[#ddd]'
+                    }`}
+                  ></span>
+                ))}
               </div>
-              <a href="#" style={{
-                color: 'rgb(79, 195, 247)',
-                textDecoration: 'none',
-                fontSize: '14px',
-                fontWeight: 500,
-                margin: '0px',
-                padding: '0px',
-                boxSizing: 'border-box'
-              }}>See all</a>
+              <a href="#" className="text-[#4FC3F7] no-underline text-sm font-medium hover:underline">
+                See all
+              </a>
             </div>
           </div>
         </div>
         
-        <div style={{
-          textAlign: 'center',
-          paddingTop: '30px',
-          borderTop: '0.666667px solid rgb(238, 238, 238)',
-          margin: '0px',
-          padding: '30px 0px 0px',
-          boxSizing: 'border-box'
-        }}>
-          <p style={{
-            color: 'rgb(153, 153, 153)',
-            fontSize: '14px',
-            margin: '0px',
-            padding: '0px',
-            boxSizing: 'border-box'
-          }}>© 2024 All rights reserved</p>
+        <div className="text-center pt-[30px] border-t border-[#eee]">
+          <p className="text-[#999] text-sm">
+            © 2024 All rights reserved
+          </p>
         </div>
       </div>
     </footer>
