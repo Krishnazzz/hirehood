@@ -132,10 +132,11 @@ export default function Header() {
         backdropFilter: 'blur(10px)',
         borderBottom: '1px solid',
         borderColor: 'divider',
+        height: { xs: 64, md: 70 },
       }}
     >
-      <Container maxWidth="lg">
-        <Toolbar disableGutters sx={{ minHeight: { xs: 64, md: 70 } }}>
+      <Container maxWidth="lg" sx={{ height: '100%' }}>
+        <Toolbar disableGutters sx={{ minHeight: { xs: 64, md: 70 }, height: '100%' }}>
           {/* Mobile menu button */}
           {isMobile && (
             <IconButton
@@ -188,11 +189,12 @@ export default function Header() {
                 gap: 0.5,
                 bgcolor: 'rgba(255,255,255,0.9)',
                 backdropFilter: 'blur(10px)',
-                p: 0.75,
+                padding: '6px',
                 borderRadius: '50px',
                 boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)',
                 border: '1px solid rgba(255,255,255,0.3)',
                 position: 'relative',
+                minHeight: 52,
               }}
             >
               <Box
@@ -220,13 +222,15 @@ export default function Header() {
                   onMouseEnter={handleLinkHover as any}
                   onClick={(e: any) => {
                     createRipple(e);
-                    router.push(item.href);
                   }}
                   sx={{
                     position: 'relative',
                     zIndex: 1,
-                    py: 1,
-                    px: 2.5,
+                    minHeight: 40,
+                    paddingTop: '8px',
+                    paddingBottom: '8px',
+                    paddingLeft: '20px',
+                    paddingRight: '20px',
                     borderRadius: '50px',
                     textTransform: 'none',
                     fontWeight: isActive(item.href) ? 600 : 500,
