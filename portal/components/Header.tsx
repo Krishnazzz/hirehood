@@ -239,9 +239,9 @@ export default function Header() {
                   {item.name}
                 </a>
               ))}
-              
-              <div className="h-px bg-gradient-to-r from-transparent via-[#e5e7eb] to-transparent my-2"></div>
-              
+
+              <div className="h-px bg-linear-to-r from-transparent via-[#e5e7eb] to-transparent my-2"></div>
+
               <a
                 href="/login"
                 className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
