@@ -539,7 +539,7 @@ export default function Home() {
                               top: "20%",          // empty space above
                               bottom: "20%",       // empty space below
                               left: 0,             // stick to left edge
-                              width: "1px",        // border thickness
+                              width: "2px",        // border thickness
                               backgroundColor: "#ccc", // border color
                             },
                             "&:hover::before": {
