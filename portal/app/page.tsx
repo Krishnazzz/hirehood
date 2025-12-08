@@ -424,7 +424,7 @@ export default function Home() {
                   key={`${category.name}-${index}`}
                   icon={category.icon}
                   label={category.name}
-                  onClick={() => {}}
+                  onClick={() => { }}
                   sx={{
                     height: '48px',
                     padding: '8px 16px',
@@ -475,9 +475,9 @@ export default function Home() {
             }}
           >
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
-              <Box sx={{ 
-                flex: { xs: '1', md: '0 0 42%' }, 
-                padding: { xs: '24px', md: '40px' } 
+              <Box sx={{
+                flex: { xs: '1', md: '0 0 42%' },
+                padding: { xs: '24px', md: '40px' }
               }}>
                 <Box
                   component="img"
@@ -493,11 +493,11 @@ export default function Home() {
                 </Typography>
               </Box>
 
-              <Box sx={{ 
-                flex: { xs: '1', md: '0 0 58%' }, 
-                padding: { xs: '16px', md: '24px' }, 
-                display: 'flex', 
-                alignItems: 'center' 
+              <Box sx={{
+                flex: { xs: '1', md: '0 0 58%' },
+                padding: { xs: '16px', md: '24px' },
+                display: 'flex',
+                alignItems: 'center'
               }}>
                 <Paper
                   elevation={3}
@@ -519,7 +519,6 @@ export default function Home() {
                             cursor: 'pointer',
                             transition: 'all 0.3s ease',
                             background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-                            border: '1px solid',
                             borderColor: 'rgba(0,0,0,0.08)',
                             '&:hover': {
                               boxShadow: '0 8px 24px rgba(25,118,210,0.15)',
@@ -532,11 +531,25 @@ export default function Home() {
                             },
                           }}
                         >
-                          <CardContent>
-                            <Typography variant="h6" sx={{ 
-                              fontWeight: 600, 
-                              fontSize: '1rem', 
-                              marginBottom: '4px' 
+                          <CardContent sx={{
+                            position: "relative",
+                            "&::before": {
+                              content: '""',
+                              position: "absolute",
+                              top: "20%",          // empty space above
+                              bottom: "20%",       // empty space below
+                              left: 0,             // stick to left edge
+                              width: "1px",        // border thickness
+                              backgroundColor: "#ccc", // border color
+                            },
+                            "&:hover::before": {
+                              backgroundColor: "primary.light",  // hover color
+                            },
+                          }}>
+                            <Typography variant="h6" sx={{
+                              fontWeight: 600,
+                              fontSize: '1rem',
+                              marginBottom: '4px'
                             }}>
                               {role.role}
                             </Typography>
