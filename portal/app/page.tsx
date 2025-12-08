@@ -2,11 +2,50 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import {
+  Box,
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Card,
+  CardContent,
+  Chip,
+  Avatar,
+  Paper,
+  InputAdornment,
+  Fade,
+  Zoom,
+  useTheme,
+  useMediaQuery,
+  IconButton,
+  Stack,
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import BusinessIcon from '@mui/icons-material/Business';
+import LaptopMacIcon from '@mui/icons-material/LaptopMac';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import CodeIcon from '@mui/icons-material/Code';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import PublicIcon from '@mui/icons-material/Public';
+import HandshakeIcon from '@mui/icons-material/Handshake';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import SchoolIcon from '@mui/icons-material/School';
+import PaletteIcon from '@mui/icons-material/Palette';
+import WorkIcon from '@mui/icons-material/Work';
+import ChatIcon from '@mui/icons-material/Chat';
 
 export default function Home() {
   const companiesScrollerRef = useRef<HTMLDivElement>(null);
   const categoriesScrollerRef = useRef<HTMLDivElement>(null);
   const [currentRoleSlide, setCurrentRoleSlide] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [locationQuery, setLocationQuery] = useState('');
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   // Auto-scroll for companies
   useEffect(() => {
@@ -15,7 +54,7 @@ export default function Home() {
 
     let baseX = 0;
     let lastTime = Date.now();
-    const velocity = 100;
+    const velocity = 50;
     let isPaused = false;
     let animationFrameId: number;
 
@@ -66,7 +105,7 @@ export default function Home() {
 
     let baseX = 0;
     let lastTime = Date.now();
-    const velocity = 100;
+    const velocity = 50;
     let isPaused = false;
     let animationFrameId: number;
 
@@ -122,16 +161,22 @@ export default function Home() {
   ];
 
   const categories = [
-    { icon: '💻', name: 'Technology' },
-    { icon: '⚕️', name: 'Healthcare' },
-    { icon: '💰', name: 'Finance' },
-    { icon: '🌐', name: 'Global Connect' },
-    { icon: '🤝', name: 'Sales & Business' },
-    { icon: '💬', name: 'Customer' },
-    { icon: '🎨', name: 'Design' },
-    { icon: '💼', name: 'Creative Services' },
-    { icon: '🎓', name: 'Education' },
-    { icon: '📊', name: 'Analytics' },
+    { icon: <CodeIcon />, name: 'Technology', color: '#4FC3F7' },
+    { icon: <LocalHospitalIcon />, name: 'Healthcare', color: '#EF5350' },
+    { icon: <AttachMoneyIcon />, name: 'Finance', color: '#66BB6A' },
+    { icon: <PublicIcon />, name: 'Global Connect', color: '#AB47BC' },
+    { icon: <HandshakeIcon />, name: 'Sales & Business', color: '#FFA726' },
+    { icon: <ChatIcon />, name: 'Customer', color: '#42A5F5' },
+    { icon: <PaletteIcon />, name: 'Design', color: '#EC407A' },
+    { icon: <WorkIcon />, name: 'Creative Services', color: '#26C6DA' },
+    { icon: <SchoolIcon />, name: 'Education', color: '#7E57C2' },
+    { icon: <BarChartIcon />, name: 'Analytics', color: '#66BB6A' },
+  ];
+
+  const jobCards = [
+    { icon: <BusinessIcon sx={{ fontSize: 40 }} />, title: 'Senior UI/UX Designer', location: 'California, US', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
+    { icon: <LaptopMacIcon sx={{ fontSize: 40 }} />, title: 'Software Engineer L4', location: 'New York, US', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
+    { icon: <BarChartIcon sx={{ fontSize: 40 }} />, title: 'Marketing Specialist', location: 'Texas, US', gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
   ];
 
   const roleSlides = [
@@ -162,208 +207,394 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#f8f9fc]">
-      <div className="max-w-[1200px] mx-auto px-5 py-[60px]">
+    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
+      <Container maxWidth="lg" sx={{ paddingTop: '48px', paddingBottom: '48px', paddingLeft: '24px', paddingRight: '24px' }}>
         {/* Hero Section */}
-        <section className="text-center mb-[60px]">
-          <h1 className="text-5xl font-bold text-[#333] mb-10 leading-tight">
-            Find Your Dream Job, Faster
-          </h1>
-          <div className="max-w-[800px] mx-auto">
-            <div className="flex bg-white rounded-[50px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.1)] mb-4">
-              <input
-                type="text"
-                placeholder="Job Title, Skills"
-                className="flex-1 px-6 py-5 border-none outline-none text-base text-[#333] placeholder:text-[#999]"
-              />
-              <input
-                type="text"
-                placeholder="Location"
-                className="flex-1 px-6 py-5 border-none border-l border-l-[#eee] outline-none text-base text-[#333] placeholder:text-[#999]"
-              />
-              <button className="bg-[#4FC3F7] text-white border-none px-9 text-base font-semibold cursor-pointer transition-colors hover:bg-[#29B6F6]">
-                Search
-              </button>
-            </div>
-            <p className="text-[#666] text-base">Discover hand-picked opportunities</p>
-          </div>
-        </section>
+        <Fade in timeout={800}>
+          <Box sx={{ textAlign: 'center', marginBottom: '80px' }}>
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: 700,
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                color: 'primary.main',
+                marginBottom: '32px',
+                lineHeight: 1.2,
+              }}
+            >
+              Find Your Dream Job, Faster
+            </Typography>
+
+            <Paper
+              elevation={3}
+              sx={{
+                maxWidth: 800,
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                padding: '8px',
+                borderRadius: '12px',
+                backgroundColor: 'white',
+              }}
+            >
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
+                <TextField
+                  fullWidth
+                  placeholder="Job Title, Skills"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon sx={{ color: 'primary.main' }} />
+                      </InputAdornment>
+                    ),
+                  }}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '50px',
+                      bgcolor: 'white',
+                      '& fieldset': { border: 'none' },
+                    },
+                  }}
+                />
+                <TextField
+                  fullWidth
+                  placeholder="Location"
+                  value={locationQuery}
+                  onChange={(e) => setLocationQuery(e.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LocationOnIcon sx={{ color: 'primary.main' }} />
+                      </InputAdornment>
+                    ),
+                  }}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '8px',
+                      backgroundColor: '#f5f5f5',
+                      '& fieldset': { borderColor: '#e0e0e0' },
+                      '&:hover fieldset': { borderColor: 'primary.main' },
+                      '&.Mui-focused fieldset': { borderColor: 'primary.main' },
+                    },
+                  }}
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  endIcon={<SearchIcon />}
+                  sx={{
+                    borderRadius: '8px',
+                    paddingLeft: '32px',
+                    paddingRight: '32px',
+                    paddingTop: '16px',
+                    paddingBottom: '16px',
+                    minWidth: 140,
+                    fontWeight: 600,
+                    textTransform: 'none',
+                    boxShadow: 2,
+                    '&:hover': {
+                      boxShadow: 4,
+                    },
+                  }}
+                >
+                  Search
+                </Button>
+              </Stack>
+            </Paper>
+            <Typography variant="body1" color="text.secondary" sx={{ marginTop: '16px' }}>
+              Discover hand-picked opportunities
+            </Typography>
+          </Box>
+        </Fade>
 
         {/* Job Cards Section */}
-        <section className="mb-20 text-center">
-          <div className="flex justify-center gap-[30px] flex-wrap">
-            {[
-              { icon: '🏢', title: 'Senior UI/UX Designer', location: 'California, US' },
-              { icon: '💻', title: 'Software Engineer L4', location: 'New York, US' },
-              { icon: '📊', title: 'Marketing Specialist', location: 'Texas, US' },
-            ].map((job, index) => (
-              <div
-                key={index}
-                className="bg-white p-[30px] rounded-[15px] shadow-[0_5px_20px_rgba(0,0,0,0.08)] transition-all hover:translate-y-[-5px] hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)] min-w-[280px] relative overflow-hidden cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-1 after:bg-[#4FC3F7] after:transition-all hover:after:w-full"
-              >
-                <div className="w-[60px] h-[60px] bg-gradient-to-br from-[#4FC3F7] to-[#29B6F6] rounded-[15px] flex items-center justify-center mx-auto mb-5 text-white text-2xl">
-                  {job.icon}
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-[#333] mb-2">{job.title}</h3>
-                  <p className="text-[#666] text-sm">{job.location}</p>
-                </div>
-              </div>
+        <Box sx={{ marginBottom: '80px' }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '24px', justifyContent: 'center' }}>
+            {jobCards.map((job, index) => (
+              <Box key={index} sx={{ width: { xs: '100%', sm: 'calc(50% - 12px)', md: 'calc(33.333% - 16px)' } }}>
+                <Zoom in timeout={800 + index * 200}>
+                  <Card
+                    elevation={2}
+                    sx={{
+                      cursor: 'pointer',
+                      transition: 'all 0.3s',
+                      borderRadius: '12px',
+                      height: '100%',
+                      '&:hover': {
+                        transform: 'translateY(-8px)',
+                        boxShadow: 6,
+                      },
+                    }}
+                  >
+                    <CardContent sx={{ textAlign: 'center', padding: '32px 24px' }}>
+                      <Avatar
+                        sx={{
+                          width: 64,
+                          height: 64,
+                          marginLeft: 'auto',
+                          marginRight: 'auto',
+                          marginBottom: '20px',
+                          backgroundColor: 'primary.main',
+                        }}
+                      >
+                        {job.icon}
+                      </Avatar>
+                      <Typography variant="h6" sx={{ fontWeight: 600, marginBottom: '8px' }}>
+                        {job.title}
+                      </Typography>
+                      <Chip
+                        icon={<LocationOnIcon sx={{ fontSize: 16 }} />}
+                        label={job.location}
+                        size="small"
+                        sx={{
+                          backgroundColor: 'primary.light',
+                          color: 'white',
+                          fontWeight: 500,
+                        }}
+                      />
+                    </CardContent>
+                  </Card>
+                </Zoom>
+              </Box>
             ))}
-          </div>
-        </section>
+          </Box>
+        </Box>
 
         {/* Trending Categories */}
-        <section className="mb-20">
-          <h2 className="text-[32px] font-semibold text-[#333] mb-10 text-center">
+        <Box sx={{ marginBottom: '80px' }}>
+          <Typography
+            variant="h3"
+            align="center"
+            sx={{
+              fontWeight: 600,
+              marginBottom: '48px',
+              fontSize: { xs: '1.75rem', md: '2.5rem' },
+              color: 'primary.main',
+            }}
+          >
             Trending Job Categories
-          </h2>
-          <div className="overflow-hidden w-full relative">
-            <div
+          </Typography>
+          <Box sx={{ overflow: 'hidden', position: 'relative' }}>
+            <Box
               ref={categoriesScrollerRef}
-              className="flex gap-5 w-max items-center"
+              sx={{
+                display: 'flex',
+                gap: '16px',
+                width: 'max-content',
+                alignItems: 'center',
+              }}
             >
-              {/* First set */}
-              {categories.map((category, index) => (
-                <div
-                  key={`first-${index}`}
-                  className="flex-shrink-0 bg-white py-6 px-4 rounded-[15px] text-center shadow-[0_3px_15px_rgba(0,0,0,0.08)] transition-all hover:translate-y-[-3px] hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] cursor-pointer min-w-[120px]"
-                >
-                  <div className="text-2xl text-[#4FC3F7] mb-2.5 block">{category.icon}</div>
-                  <span className="text-sm text-[#666] font-medium">{category.name}</span>
-                </div>
+              {[...categories, ...categories].map((category, index) => (
+                <Chip
+                  key={`${category.name}-${index}`}
+                  icon={category.icon}
+                  label={category.name}
+                  onClick={() => {}}
+                  sx={{
+                    paddingTop: '20px',
+                    paddingBottom: '20px',
+                    paddingLeft: '16px',
+                    paddingRight: '16px',
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    backgroundColor: 'primary.light',
+                    color: 'white',
+                    boxShadow: 2,
+                    transition: 'all 0.3s',
+                    '& .MuiChip-icon': {
+                      color: 'white',
+                      fontSize: 24,
+                    },
+                    '&:hover': {
+                      backgroundColor: 'primary.dark',
+                      boxShadow: 4,
+                    },
+                  }}
+                />
               ))}
-              {/* Duplicate set for seamless loop */}
-              {categories.map((category, index) => (
-                <div
-                  key={`second-${index}`}
-                  className="flex-shrink-0 bg-white py-6 px-4 rounded-[15px] text-center shadow-[0_3px_15px_rgba(0,0,0,0.08)] transition-all hover:translate-y-[-3px] hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] cursor-pointer min-w-[120px]"
-                >
-                  <div className="text-2xl text-[#4FC3F7] mb-2.5 block">{category.icon}</div>
-                  <span className="text-sm text-[#666] font-medium">{category.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+            </Box>
+          </Box>
+        </Box>
 
         {/* Popular Roles Section */}
-        <section className="mb-[50px] my-[35px] inline-block rounded shadow-none min-w-[50px] min-h-[50px] w-full overflow-auto">
-          <div className="my-10 mx-0 relative h-[335px] rounded-[20px] border border-[#ADD8E6] bg-gradient-to-b from-[rgba(173,216,230,0.1)] to-[#87CEEB] max-w-[1120px]">
-            {/* Left side content */}
-            <div className="absolute w-[420px] pt-6 pl-[60px]">
-              <img
-                src="https://static.naukimg.com/s/0/0/i/role-collection-ot.png"
-                alt="Discover roles"
-                className="h-[175px] w-[389px]"
-              />
-              <p className="text-2xl leading-[31px] mt-1.5 w-[275px] font-black text-[rgb(18,18,36)]">
-                Discover jobs across popular roles
-              </p>
-              <p className="mt-3 w-[360px] font-medium text-sm leading-[18px] text-[rgb(71,77,106)]">
-                Select a role and we'll show you relevant jobs for it!
-              </p>
-            </div>
+        <Box sx={{ marginBottom: '80px' }}>
+          <Paper
+            elevation={2}
+            sx={{
+              borderRadius: '12px',
+              overflow: 'hidden',
+              backgroundColor: 'background.default',
+              border: '1px solid',
+              borderColor: 'divider',
+            }}
+          >
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+              <Box sx={{ 
+                flex: { xs: '1', md: '0 0 42%' }, 
+                padding: { xs: '24px', md: '40px' } 
+              }}>
+                <Box
+                  component="img"
+                  src="https://static.naukimg.com/s/0/0/i/role-collection-ot.png"
+                  alt="Discover roles"
+                  sx={{ width: '100%', maxWidth: 350, marginBottom: '24px' }}
+                />
+                <Typography variant="h4" sx={{ fontWeight: 600, marginBottom: '16px' }}>
+                  Discover jobs across popular roles
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  Select a role and we'll show you relevant jobs for it!
+                </Typography>
+              </Box>
 
-            {/* Right side roles carousel */}
-            <div className="absolute -top-[38px] left-[584px] h-[411px] w-[476px] bg-white border border-[#E7E7F1] rounded-[20px] shadow-[0_6px_12px_rgba(30,10,58,0.04)]">
-              <div className="mx-auto overflow-hidden relative z-[1]">
-                <div
-                  className="flex relative w-full h-[349px] z-[1] transition-transform duration-500"
-                  style={{ transform: `translateX(-${currentRoleSlide * 475}px)` }}
+              <Box sx={{ 
+                flex: { xs: '1', md: '0 0 58%' }, 
+                padding: { xs: '16px', md: '24px' }, 
+                display: 'flex', 
+                alignItems: 'center' 
+              }}>
+                <Paper
+                  elevation={3}
+                  sx={{
+                    padding: '24px',
+                    borderRadius: '12px',
+                    width: '100%',
+                    backgroundColor: 'white',
+                  }}
                 >
-                  {roleSlides.map((slide, slideIndex) => (
-                    <div
-                      key={slideIndex}
-                      className="flex-shrink-0 w-[475px] h-[349px] relative"
-                    >
-                      <div className="pt-[61px] pl-6">
-                        {slide.map((role, roleIndex) => (
-                          <div
-                            key={roleIndex}
-                            className="relative inline-flex justify-center items-center h-[74px] w-[207px] mr-3 mb-[22px]"
-                          >
-                            <div className="cursor-pointer w-[202px] h-[74px] bg-white border border-[#E7E7F1] rounded-[16px] hover:shadow-lg transition-shadow">
-                              <div className="relative table-cell h-[74px] left-5 align-middle">
-                                <Link
-                                  href={`/jobs?search=${encodeURIComponent(role.role)}`}
-                                  className="block max-w-[160px] overflow-hidden whitespace-nowrap text-ellipsis font-bold text-base leading-5 text-[rgb(18,18,36)] mb-1.5 no-underline hover:text-[#4FC3F7]"
-                                >
-                                  {role.role}
-                                </Link>
-                                <p className="font-medium text-sm leading-[18px] text-[rgb(71,77,106)]">
-                                  {role.jobs} Jobs
-                                  <span className="ml-2.5 relative top-[2px] text-xs">→</span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+                    {roleSlides[currentRoleSlide].map((role, index) => (
+                      <Box key={index} sx={{ width: { xs: '100%', sm: 'calc(50% - 8px)' } }}>
+                        <Card
+                          component={Link}
+                          href={`/jobs?search=${encodeURIComponent(role.role)}`}
+                          sx={{
+                            textDecoration: 'none',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s',
+                            '&:hover': {
+                              boxShadow: 4,
+                            },
+                          }}
+                        >
+                          <CardContent>
+                            <Typography variant="h6" sx={{ 
+                              fontWeight: 600, 
+                              fontSize: '1rem', 
+                              marginBottom: '4px' 
+                            }}>
+                              {role.role}
+                            </Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                              <Typography variant="body2" color="text.secondary">
+                                {role.jobs} Jobs
+                              </Typography>
+                              <ArrowForwardIcon sx={{ fontSize: 16, color: 'primary.main' }} />
+                            </Box>
+                          </CardContent>
+                        </Card>
+                      </Box>
+                    ))}
+                  </Box>
 
-              {/* Navigation dots */}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                {roleSlides.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentRoleSlide(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      currentRoleSlide === index ? 'bg-[#4FC3F7] w-6' : 'bg-[#ddd]'
-                    }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '24px' }}>
+                    {roleSlides.map((_, index) => (
+                      <Box
+                        key={index}
+                        onClick={() => setCurrentRoleSlide(index)}
+                        sx={{
+                          width: currentRoleSlide === index ? 32 : 12,
+                          height: 12,
+                          borderRadius: '50px',
+                          backgroundColor: currentRoleSlide === index ? 'primary.main' : '#ddd',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s',
+                        }}
+                      />
+                    ))}
+                  </Box>
+                </Paper>
+              </Box>
+            </Box>
+          </Paper>
+        </Box>
 
-        {/* Connect with Top Companies Section */}
-        <section className="mb-20 text-center">
-          <h2 className="text-[32px] font-semibold text-[#333] mb-10">
+        {/* Connect with Top Companies */}
+        <Box sx={{ marginBottom: '80px' }}>
+          <Typography
+            variant="h3"
+            align="center"
+            sx={{
+              fontWeight: 600,
+              marginBottom: '48px',
+              fontSize: { xs: '1.75rem', md: '2.5rem' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '16px',
+              color: 'primary.main',
+            }}
+          >
+            <TrendingUpIcon sx={{ fontSize: { xs: 32, md: 40 }, color: 'primary.main' }} />
             Connect with Top Companies
-          </h2>
-
-          <div className="overflow-hidden w-full relative">
-            <div
+          </Typography>
+          <Box sx={{ overflow: 'hidden', position: 'relative' }}>
+            <Box
               ref={companiesScrollerRef}
-              className="flex gap-10 w-max items-center"
+              sx={{
+                display: 'flex',
+                gap: '32px',
+                width: 'max-content',
+                alignItems: 'center',
+              }}
             >
-              {/* First set of companies */}
-              {companies.map((company, index) => (
-                <div
-                  key={`first-${index}`}
-                  className="flex-shrink-0 flex items-center justify-center bg-white rounded-[15px] shadow-[0_3px_15px_rgba(0,0,0,0.08)] transition-all duration-300 hover:translate-y-[-3px] hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] p-5 min-w-[150px] h-20 cursor-pointer"
+              {[...companies, ...companies].map((company, index) => (
+                <Paper
+                  key={`${company.name}-${index}`}
+                  elevation={1}
+                  sx={{
+                    padding: '32px 24px',
+                    minWidth: 200,
+                    height: 120,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '12px',
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    backgroundColor: 'white',
+                    transition: 'all 0.3s',
+                    cursor: 'pointer',
+                    '&:hover': {
+                      borderColor: 'primary.main',
+                      boxShadow: 3,
+                      '& img': {
+                        filter: 'grayscale(0%)',
+                      },
+                    },
+                  }}
                 >
-                  <img
+                  <Box
+                    component="img"
                     src={company.logo}
                     alt={company.name}
-                    className="max-w-[120px] max-h-[60px] w-auto h-auto object-contain transition-all duration-300 hover:grayscale"
+                    sx={{
+                      maxWidth: '100%',
+                      maxHeight: '100%',
+                      width: 'auto',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      filter: 'grayscale(100%)',
+                      transition: 'filter 0.3s',
+                    }}
                   />
-                </div>
+                </Paper>
               ))}
-
-              {/* Duplicate set for seamless loop */}
-              {companies.map((company, index) => (
-                <div
-                  key={`second-${index}`}
-                  className="flex-shrink-0 flex items-center justify-center bg-white rounded-[15px] shadow-[0_3px_15px_rgba(0,0,0,0.08)] transition-all duration-300 hover:translate-y-[-3px] hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] p-5 min-w-[150px] h-20 cursor-pointer"
-                >
-                  <img
-                    src={company.logo}
-                    alt={company.name}
-                    className="max-w-[120px] max-h-[60px] w-auto h-auto object-contain transition-all duration-300 hover:grayscale"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </div>
-    </main>
+            </Box>
+          </Box>
+        </Box>
+      </Container>
+    </Box>
   );
 }
