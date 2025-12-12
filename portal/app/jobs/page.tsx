@@ -43,6 +43,12 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CloseIcon from '@mui/icons-material/Close';
+import CodeIcon from '@mui/icons-material/Code';
+import DesignServicesIcon from '@mui/icons-material/DesignServices';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import SchoolIcon from '@mui/icons-material/School';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import EngineeringIcon from '@mui/icons-material/Engineering';
 
 // Job interface matching your model
 interface Job {
@@ -676,22 +682,322 @@ export default function JobsPage() {
     <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', py: 4 }}>
       <Container maxWidth="xl">
         {/* Header */}
-        <Box sx={{ mb: 4 }}>
-          <Typography
-            variant="h3"
+        <Box 
+          sx={{ 
+            mb: 5,
+            position: 'relative',
+            padding: { xs: '40px 20px', md: '60px 40px' },
+            borderRadius: '24px',
+            background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%)',
+            border: '1px solid',
+            borderColor: 'rgba(37, 99, 235, 0.1)',
+            overflow: 'hidden',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: '-50%',
+              right: '-10%',
+              width: '300px',
+              height: '300px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%)',
+              pointerEvents: 'none',
+            },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              bottom: '-30%',
+              left: '-5%',
+              width: '250px',
+              height: '250px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)',
+              pointerEvents: 'none',
+            },
+          }}
+        >
+          {/* Floating Profile Icons */}
+          <Box
             sx={{
-              fontWeight: 700,
-              mb: 1,
-              background: 'linear-gradient(135deg, #2563eb 0%, #10b981 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              position: 'absolute',
+              top: '8%',
+              left: '3%',
+              width: '50px',
+              height: '50px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%)',
+              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center',
+              justifyContent: 'center',
+              animation: 'float1 6s ease-in-out infinite',
+              '@keyframes float1': {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '25%': { transform: 'translate(10px, -10px) rotate(5deg)' },
+                '50%': { transform: 'translate(-5px, 5px) rotate(-3deg)' },
+                '75%': { transform: 'translate(5px, 10px) rotate(2deg)' },
+              },
             }}
           >
-            Find Your Dream Job
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {filteredJobs.length} jobs found
-          </Typography>
+            <CodeIcon sx={{ fontSize: 30, color: 'primary.main', opacity: 0.7 }} />
+          </Box>
+
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: '12%',
+              left: '6%',
+              width: '45px',
+              height: '45px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%)',
+              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center',
+              justifyContent: 'center',
+              animation: 'float2 7s ease-in-out infinite',
+              '@keyframes float2': {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '33%': { transform: 'translate(-8px, 12px) rotate(-4deg)' },
+                '66%': { transform: 'translate(12px, -8px) rotate(4deg)' },
+              },
+            }}
+          >
+            <DesignServicesIcon sx={{ fontSize: 26, color: 'secondary.main', opacity: 0.7 }} />
+          </Box>
+
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '12%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '46px',
+              height: '46px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(16, 185, 129, 0.12) 100%)',
+              display: { xs: 'none', lg: 'flex' },
+              alignItems: 'center',
+              justifyContent: 'center',
+              animation: 'float3 7.8s ease-in-out infinite',
+              '@keyframes float3': {
+                '0%, 100%': { transform: 'translateX(-50%) translate(0, 0) rotate(0deg)' },
+                '33%': { transform: 'translateX(-50%) translate(8px, -10px) rotate(4deg)' },
+                '66%': { transform: 'translateX(-50%) translate(-8px, 10px) rotate(-4deg)' },
+              },
+            }}
+          >
+            <BusinessIcon sx={{ fontSize: 27, color: 'primary.main', opacity: 0.6 }} />
+          </Box>
+
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: '18%',
+              left: '45%',
+              width: '44px',
+              height: '44px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(37, 99, 235, 0.12) 100%)',
+              display: { xs: 'none', lg: 'flex' },
+              alignItems: 'center',
+              justifyContent: 'center',
+              animation: 'float4 8.2s ease-in-out infinite',
+              '@keyframes float4': {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '30%': { transform: 'translate(-10px, 12px) rotate(-5deg)' },
+                '60%': { transform: 'translate(10px, -8px) rotate(4deg)' },
+              },
+            }}
+          >
+            <AttachMoneyIcon sx={{ fontSize: 26, color: 'secondary.main', opacity: 0.6 }} />
+          </Box>
+
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '15%',
+              right: '18%',
+              width: '55px',
+              height: '55px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(37, 99, 235, 0.12) 100%)',
+              display: { xs: 'none', lg: 'flex' },
+              alignItems: 'center',
+              justifyContent: 'center',
+              animation: 'float5 8s ease-in-out infinite',
+              '@keyframes float5': {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '30%': { transform: 'translate(15px, 10px) rotate(6deg)' },
+                '60%': { transform: 'translate(-10px, -15px) rotate(-5deg)' },
+              },
+            }}
+          >
+            <AccountBalanceIcon sx={{ fontSize: 32, color: 'primary.main', opacity: 0.7 }} />
+          </Box>
+
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: '10%',
+              right: '8%',
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%)',
+              display: { xs: 'none', lg: 'flex' },
+              alignItems: 'center',
+              justifyContent: 'center',
+              animation: 'float6 9s ease-in-out infinite',
+              '@keyframes float6': {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '25%': { transform: 'translate(-12px, -8px) rotate(-3deg)' },
+                '50%': { transform: 'translate(8px, 12px) rotate(4deg)' },
+                '75%': { transform: 'translate(-5px, 5px) rotate(-2deg)' },
+              },
+            }}
+          >
+            <SchoolIcon sx={{ fontSize: 28, color: 'secondary.main', opacity: 0.7 }} />
+          </Box>
+
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              right: '4%',
+              width: '42px',
+              height: '42px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%)',
+              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center',
+              justifyContent: 'center',
+              animation: 'float7 7.5s ease-in-out infinite',
+              '@keyframes float7': {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '40%': { transform: 'translate(10px, -12px) rotate(5deg)' },
+                '80%': { transform: 'translate(-8px, 8px) rotate(-4deg)' },
+              },
+            }}
+          >
+            <LocalHospitalIcon sx={{ fontSize: 24, color: 'primary.main', opacity: 0.7 }} />
+          </Box>
+
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '35%',
+              left: '10%',
+              width: '52px',
+              height: '52px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(16, 185, 129, 0.12) 100%)',
+              display: { xs: 'none', lg: 'flex' },
+              alignItems: 'center',
+              justifyContent: 'center',
+              animation: 'float8 8.5s ease-in-out infinite',
+              '@keyframes float8': {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '35%': { transform: 'translate(-10px, 15px) rotate(-6deg)' },
+                '70%': { transform: 'translate(12px, -10px) rotate(5deg)' },
+              },
+            }}
+          >
+            <EngineeringIcon sx={{ fontSize: 30, color: 'secondary.main', opacity: 0.7 }} />
+          </Box>
+
+          <Box sx={{ position: 'relative', zIndex: 1 }}>
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={3} alignItems={{ xs: 'flex-start', md: 'center' }} justifyContent="space-between">
+              <Box>
+                <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 2 }}>
+                  <Chip
+                    icon={<TrendingUpIcon />}
+                    label="Live Jobs"
+                    sx={{
+                      background: 'linear-gradient(135deg, #2563eb 0%, #10b981 100%)',
+                      color: 'white',
+                      fontWeight: 600,
+                      '& .MuiChip-icon': { color: 'white' },
+                    }}
+                  />
+                  <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 500 }}>
+                    Updated 2 hours ago
+                  </Typography>
+                </Stack>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 800,
+                    mb: 1.5,
+                    fontSize: { xs: '2rem', md: '2.75rem' },
+                    background: 'linear-gradient(135deg, #2563eb 0%, #10b981 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Find Your Dream Job
+                </Typography>
+                <Typography variant="h6" color="text.secondary" sx={{ fontWeight: 400, mb: 1 }}>
+                  Discover opportunities that match your skills and aspirations
+                </Typography>
+                <Stack direction="row" spacing={3} sx={{ mt: 2 }}>
+                  <Box>
+                    <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main' }}>
+                      {filteredJobs.length}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Jobs Available
+                    </Typography>
+                  </Box>
+                  <Divider orientation="vertical" flexItem />
+                  <Box>
+                    <Typography variant="h4" sx={{ fontWeight: 700, color: 'secondary.main' }}>
+                      {new Set(dummyJobs.map(j => j.company_name)).size}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Companies Hiring
+                    </Typography>
+                  </Box>
+                  <Divider orientation="vertical" flexItem />
+                  <Box>
+                    <Typography variant="h4" sx={{ fontWeight: 700, color: 'primary.main' }}>
+                      {new Set(dummyJobs.map(j => j.location)).size}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Locations
+                    </Typography>
+                  </Box>
+                </Stack>
+              </Box>
+              
+              {!isMobile && (
+                <Box
+                  sx={{
+                    width: 120,
+                    height: 120,
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #2563eb 0%, #10b981 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 12px 40px rgba(37, 99, 235, 0.3)',
+                    animation: 'pulse 2s infinite',
+                    '@keyframes pulse': {
+                      '0%, 100%': {
+                        transform: 'scale(1)',
+                        boxShadow: '0 12px 40px rgba(37, 99, 235, 0.3)',
+                      },
+                      '50%': {
+                        transform: 'scale(1.05)',
+                        boxShadow: '0 16px 48px rgba(37, 99, 235, 0.4)',
+                      },
+                    },
+                  }}
+                >
+                  <WorkIcon sx={{ fontSize: 60, color: 'white' }} />
+                </Box>
+              )}
+            </Stack>
+          </Box>
         </Box>
 
         {/* Search Bar */}
