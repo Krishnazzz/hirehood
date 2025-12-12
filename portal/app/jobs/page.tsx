@@ -766,13 +766,35 @@ export default function JobsPage() {
               elevation={1}
               sx={{
                 width: 300,
-                height: 'fit-content',
+                maxHeight: 'calc(100vh - 100px)',
                 borderRadius: '16px',
                 position: 'sticky',
                 top: 20,
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              <FilterContent />
+              <Box
+                sx={{
+                  overflowY: 'auto',
+                  '&::-webkit-scrollbar': {
+                    width: '6px',
+                  },
+                  '&::-webkit-scrollbar-track': {
+                    background: 'transparent',
+                  },
+                  '&::-webkit-scrollbar-thumb': {
+                    background: 'linear-gradient(135deg, #2563eb 0%, #10b981 100%)',
+                    borderRadius: '10px',
+                  },
+                  '&::-webkit-scrollbar-thumb:hover': {
+                    background: 'linear-gradient(135deg, #1d4ed8 0%, #059669 100%)',
+                  },
+                }}
+              >
+                <FilterContent />
+              </Box>
             </Paper>
           )}
 
