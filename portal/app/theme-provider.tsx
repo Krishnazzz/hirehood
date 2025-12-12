@@ -6,14 +6,23 @@ import { ReactNode } from 'react';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
-      light: '#42a5f5',
-      dark: '#1565c0',
-      lighter: '#e3f2fd',
+      main: '#2563eb',
+      light: '#60a5fa',
+      dark: '#1d4ed8',
+      lighter: '#dbeafe',
+    },
+    secondary: {
+      main: '#10b981',
+      light: '#34d399',
+      dark: '#059669',
     },
     background: {
-      default: '#f5f5f5',
+      default: '#f8fafc',
       paper: '#ffffff',
+    },
+    text: {
+      primary: '#1e293b',
+      secondary: '#64748b',
     },
   },
   typography: {
