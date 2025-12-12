@@ -20,6 +20,8 @@ import {
   useMediaQuery,
   IconButton,
   Stack,
+  Grid,
+  Divider,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -37,6 +39,9 @@ import SchoolIcon from '@mui/icons-material/School';
 import PaletteIcon from '@mui/icons-material/Palette';
 import WorkIcon from '@mui/icons-material/Work';
 import ChatIcon from '@mui/icons-material/Chat';
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import PeopleIcon from '@mui/icons-material/People';
 
 export default function Home() {
   const companiesScrollerRef = useRef<HTMLDivElement>(null);
@@ -236,19 +241,36 @@ export default function Home() {
       <Container maxWidth="lg" sx={{ paddingTop: '48px', paddingBottom: '48px', paddingLeft: '24px', paddingRight: '24px' }}>
         {/* Hero Section */}
         <Fade in timeout={800}>
-          <Box sx={{ textAlign: 'center', marginBottom: '80px' }}>
-            <Typography
-              variant="h2"
-              sx={{
-                fontWeight: 700,
-                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-                color: 'primary.main',
-                marginBottom: '32px',
-                lineHeight: 1.2,
-              }}
-            >
-              Find Your Dream Job, Faster
-            </Typography>
+          <Box sx={{ textAlign: 'center', marginBottom: '80px', position: 'relative' }}>
+            <Box sx={{ marginBottom: '16px' }}>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontWeight: 800,
+                  fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
+                  background: 'linear-gradient(135deg, #2563eb 0%, #10b981 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  marginBottom: '8px',
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                HireHood
+              </Typography>
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 400,
+                  fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
+                  color: 'text.secondary',
+                  marginBottom: '24px',
+                  maxWidth: '700px',
+                  marginX: 'auto',
+                }}
+              >
+                Your neighborhood for career opportunities. Connect with top employers and find your perfect role.
+              </Typography>
+            </Box>
 
             <Paper
               elevation={3}
@@ -419,20 +441,75 @@ export default function Home() {
           </Box>
         </Box>
 
+        {/* Stats Section */}
+        <Box
+          sx={{
+            marginBottom: '80px',
+            padding: '48px 24px',
+            borderRadius: '20px',
+            background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%)',
+            border: '1px solid',
+            borderColor: 'rgba(37, 99, 235, 0.1)',
+          }}
+        >
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={4}
+            sx={{ justifyContent: 'space-around', textAlign: 'center' }}
+          >
+            <Box>
+              <Typography variant="h3" sx={{ fontWeight: 700, color: 'primary.main', marginBottom: '8px' }}>
+                50K+
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                Active Jobs
+              </Typography>
+            </Box>
+            <Box>
+              <Typography variant="h3" sx={{ fontWeight: 700, color: 'secondary.main', marginBottom: '8px' }}>
+                10K+
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                Companies Hiring
+              </Typography>
+            </Box>
+            <Box>
+              <Typography variant="h3" sx={{ fontWeight: 700, color: 'primary.main', marginBottom: '8px' }}>
+                2M+
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                Job Seekers
+              </Typography>
+            </Box>
+            <Box>
+              <Typography variant="h3" sx={{ fontWeight: 700, color: 'secondary.main', marginBottom: '8px' }}>
+                95%
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                Success Rate
+              </Typography>
+            </Box>
+          </Stack>
+        </Box>
+
         {/* Trending Categories */}
         <Box sx={{ marginBottom: '80px' }}>
-          <Typography
-            variant="h3"
-            align="center"
-            sx={{
-              fontWeight: 600,
-              marginBottom: '48px',
-              fontSize: { xs: '1.75rem', md: '2.5rem' },
-              color: 'primary.main',
-            }}
-          >
-            Trending Job Categories
-          </Typography>
+          <Box sx={{ textAlign: 'center', marginBottom: '48px' }}>
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 700,
+                fontSize: { xs: '1.75rem', md: '2.5rem' },
+                color: 'text.primary',
+                marginBottom: '12px',
+              }}
+            >
+              Explore Jobs by Category
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '600px', marginX: 'auto' }}>
+              Browse thousands of opportunities across diverse industries and find the perfect match for your skills.
+            </Typography>
+          </Box>
           <Box sx={{ overflow: 'hidden', position: 'relative', padding: '20px' }}>
             <Box
               ref={categoriesScrollerRef}
@@ -507,14 +584,14 @@ export default function Home() {
                 <Box
                   component="img"
                   src="https://static.naukimg.com/s/0/0/i/role-collection-ot.png"
-                  alt="Discover roles"
+                  alt="Discover roles at HireHood"
                   sx={{ width: '100%', maxWidth: 350, marginBottom: '24px' }}
                 />
-                <Typography variant="h4" sx={{ fontWeight: 600, marginBottom: '16px' }}>
-                  Discover jobs across popular roles
+                <Typography variant="h4" sx={{ fontWeight: 700, marginBottom: '16px', color: 'text.primary' }}>
+                  Discover Your Next Career Move
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  Select a role and we'll show you relevant jobs for it!
+                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.7 }}>
+                  Explore curated job opportunities in your field. Click on any role to find positions tailored to your expertise.
                 </Typography>
               </Box>
 
@@ -615,25 +692,371 @@ export default function Home() {
           </Paper>
         </Box>
 
+        {/* Our Services */}
+        <Box
+          sx={{
+            marginBottom: '80px',
+            maxWidth: '1202px',
+            width: '100%',
+            paddingRight: '12px',
+            paddingLeft: '12px',
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            background: 'linear-gradient(135deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.8) 100%)',
+            borderRadius: '16px',
+            padding: '48px 24px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+          }}
+        >
+          <Box sx={{ textAlign: 'center', marginBottom: '48px' }}>
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: { xs: '28px', md: '35px' },
+                fontWeight: 700,
+                marginBottom: '16px',
+                lineHeight: '42px',
+                color: 'primary.main',
+                textAlign: 'center',
+              }}
+            >
+              Our Services
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: '16px',
+                color: 'text.secondary',
+                margin: '0px',
+                maxWidth: '800px',
+                marginX: 'auto',
+                textAlign: 'center',
+              }}
+            >
+              HireHood offers recruitment solutions for companies, placement solutions for job seekers, and upskilling courses, making us the premier job portal for hiring, career growth, and skill development.
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '32px' }}>
+            <Paper
+              component="a"
+              href="https://www.jobaaj.com/recruiter-services"
+              target="_blank"
+              sx={{
+                position: 'relative',
+                overflow: 'hidden',
+                cursor: 'pointer',
+                boxShadow: '0 6px 20px rgba(0, 0, 0, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(0, 0, 0, 0.08)',
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: '300px',
+                maxWidth: '350px',
+                flex: '1 1 300px',
+                overflowWrap: 'break-word',
+                backgroundColor: 'white',
+                textDecoration: 'none',
+                color: 'inherit',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+                  transform: 'translateY(-8px)',
+                  borderColor: 'primary.main',
+                },
+              }}
+            >
+              <Box sx={{ padding: '32px', textAlign: 'center' }}>
+                <Box
+                  sx={{
+                    width: '80px',
+                    height: '80px',
+                    margin: '0 auto 24px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, primary.light 0%, primary.main 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                  }}
+                >
+                  <Box
+                    component="img"
+                    width="50"
+                    height="50"
+                    loading="lazy"
+                    alt="HireHood Recruitment Solution"
+                    src="https://cdn.nishtyainfotech.com/content/jobaaj/static-assets/index/recruitement_solution.webp"
+                    sx={{ verticalAlign: 'middle' }}
+                  />
+                </Box>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: '22px',
+                    lineHeight: '28px',
+                    color: 'text.primary',
+                    marginBottom: '16px',
+                  }}
+                >
+                  Recruitment Solution
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontWeight: 400,
+                    fontSize: '15px',
+                    lineHeight: '22px',
+                    color: 'text.secondary',
+                    marginBottom: '24px',
+                  }}
+                >
+                  End-to-end hiring solutions to help companies find top talent faster from sourcing to onboarding.
+                </Typography>
+                <Box
+                  sx={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    border: '2px solid primary.main',
+                    borderRadius: '50%',
+                    backgroundColor: 'primary.main',
+                    color: 'white',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      backgroundColor: 'white',
+                      color: 'primary.main',
+                    },
+                  }}
+                >
+                  <ArrowForwardIcon sx={{ fontSize: '20px' }} />
+                </Box>
+              </Box>
+            </Paper>
+            <Paper
+              component="a"
+              href="https://www.jobaaj.com/jobseeker-services"
+              target="_blank"
+              sx={{
+                position: 'relative',
+                overflow: 'hidden',
+                cursor: 'pointer',
+                boxShadow: '0 6px 20px rgba(0, 0, 0, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(0, 0, 0, 0.08)',
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: '300px',
+                maxWidth: '350px',
+                flex: '1 1 300px',
+                overflowWrap: 'break-word',
+                backgroundColor: 'white',
+                textDecoration: 'none',
+                color: 'inherit',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+                  transform: 'translateY(-8px)',
+                  borderColor: 'primary.main',
+                },
+              }}
+            >
+              <Box sx={{ padding: '32px', textAlign: 'center' }}>
+                <Box
+                  sx={{
+                    width: '80px',
+                    height: '80px',
+                    margin: '0 auto 24px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, primary.light 0%, primary.main 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                  }}
+                >
+                  <Box
+                    component="img"
+                    width="50"
+                    height="50"
+                    loading="lazy"
+                    alt="HireHood Placement Solution"
+                    src="https://cdn.nishtyainfotech.com/content/jobaaj/static-assets/index/placement_solution.webp"
+                    sx={{ verticalAlign: 'middle' }}
+                  />
+                </Box>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: '22px',
+                    lineHeight: '28px',
+                    color: 'text.primary',
+                    marginBottom: '16px',
+                  }}
+                >
+                  Placement Solution
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontWeight: 400,
+                    fontSize: '15px',
+                    lineHeight: '22px',
+                    color: 'text.secondary',
+                    marginBottom: '24px',
+                  }}
+                >
+                  Turn your potential into a job offer with expert-led training, resume support, and career opportunities.
+                </Typography>
+                <Box
+                  sx={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    border: '2px solid primary.main',
+                    borderRadius: '50%',
+                    backgroundColor: 'primary.main',
+                    color: 'white',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      backgroundColor: 'white',
+                      color: 'primary.main',
+                    },
+                  }}
+                >
+                  <ArrowForwardIcon sx={{ fontSize: '20px' }} />
+                </Box>
+              </Box>
+            </Paper>
+            <Paper
+              component="a"
+              href="https://www.jobaajlearnings.com/courses?utm_source=jobaaj_main&utm_medium=home_page&utm_campaign=tracking"
+              target="_blank"
+              sx={{
+                position: 'relative',
+                overflow: 'hidden',
+                cursor: 'pointer',
+                boxShadow: '0 6px 20px rgba(0, 0, 0, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(0, 0, 0, 0.08)',
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: '300px',
+                maxWidth: '350px',
+                flex: '1 1 300px',
+                overflowWrap: 'break-word',
+                backgroundColor: 'white',
+                textDecoration: 'none',
+                color: 'inherit',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+                  transform: 'translateY(-8px)',
+                  borderColor: 'primary.main',
+                },
+              }}
+            >
+              <Box sx={{ padding: '32px', textAlign: 'center' }}>
+                <Box
+                  sx={{
+                    width: '80px',
+                    height: '80px',
+                    margin: '0 auto 24px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, primary.light 0%, primary.main 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                  }}
+                >
+                  <Box
+                    component="img"
+                    width="50"
+                    height="50"
+                    loading="lazy"
+                    alt="HireHood Upskilling Courses"
+                    src="https://cdn.nishtyainfotech.com/content/jobaaj/static-assets/index/upskilling_courses.webp"
+                    sx={{ verticalAlign: 'middle' }}
+                  />
+                </Box>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: '22px',
+                    lineHeight: '28px',
+                    color: 'text.primary',
+                    marginBottom: '16px',
+                  }}
+                >
+                  Upskilling Courses
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontWeight: 400,
+                    fontSize: '15px',
+                    lineHeight: '22px',
+                    color: 'text.secondary',
+                    marginBottom: '24px',
+                  }}
+                >
+                  Learn the skills companies actually hire for with fast, flexible, certified courses designed for real-world jobs.
+                </Typography>
+                <Box
+                  sx={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    border: '2px solid primary.main',
+                    borderRadius: '50%',
+                    backgroundColor: 'primary.main',
+                    color: 'white',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      backgroundColor: 'white',
+                      color: 'primary.main',
+                    },
+                  }}
+                >
+                  <ArrowForwardIcon sx={{ fontSize: '20px' }} />
+                </Box>
+              </Box>
+            </Paper>
+          </Box>
+        </Box>
+
         {/* Connect with Top Companies */}
         <Box sx={{ marginBottom: '80px' }}>
-          <Typography
-            variant="h3"
-            align="center"
-            sx={{
-              fontWeight: 600,
-              marginBottom: '48px',
-              fontSize: { xs: '1.75rem', md: '2.5rem' },
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '16px',
-              color: 'primary.main',
-            }}
-          >
-            <TrendingUpIcon sx={{ fontSize: { xs: 32, md: 40 }, color: 'primary.main' }} />
-            Connect with Top Companies
-          </Typography>
+          <Box sx={{ textAlign: 'center', marginBottom: '48px' }}>
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 700,
+                fontSize: { xs: '1.75rem', md: '2.5rem' },
+                color: 'text.primary',
+                marginBottom: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '16px',
+              }}
+            >
+              <BusinessIcon sx={{ fontSize: { xs: 32, md: 40 }, color: 'primary.main' }} />
+              Trusted by Leading Companies
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '600px', marginX: 'auto' }}>
+              Join thousands of professionals who found their dream jobs through HireHood's network of top employers.
+            </Typography>
+          </Box>
           <Box sx={{ overflow: 'hidden', position: 'relative', paddingBottom: '24px' }}>
             <Box
               ref={companiesScrollerRef}
@@ -705,6 +1128,83 @@ export default function Home() {
                   />
                 </Paper>
               ))}
+            </Box>
+          </Box>
+        </Box>
+        <Box sx={{ marginBottom: '80px' }}>
+          <Box sx={{ textAlign: 'center', marginBottom: '48px' }}>
+            <Typography variant="h3" sx={{ fontWeight: 700, fontSize: { xs: '2rem', md: '2.5rem' }, color: 'text.primary', marginBottom: '12px' }}>Success Stories from the HireHood Community</Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '600px', marginX: 'auto' }}>Hear from professionals who transformed their careers with HireHood</Typography>
+          </Box>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={4}>
+            <Paper elevation={2} sx={{ padding: '32px', borderRadius: '16px', flex: 1, transition: 'all 0.3s ease', '&:hover': { transform: 'translateY(-8px)', boxShadow: '0 12px 40px rgba(0, 0, 0, 0.1)' } }}>
+              <FormatQuoteIcon sx={{ fontSize: '48px', color: 'primary.main', marginBottom: '16px' }} />
+              <Typography variant="body1" sx={{ marginBottom: '24px', fontStyle: 'italic', lineHeight: 1.8, color: 'text.secondary' }}>"HireHood helped me land my dream job in tech. The platform made it so easy to connect with top companies and showcase my skills."</Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <Avatar sx={{ width: 56, height: 56, bgcolor: 'primary.main', fontWeight: 600 }}>AS</Avatar>
+                <Box>
+                  <Typography variant="h6" sx={{ fontWeight: 600 }}>Ananya Sharma</Typography>
+                  <Typography variant="body2" color="text.secondary">Software Engineer</Typography>
+                </Box>
+              </Box>
+            </Paper>
+            <Paper elevation={2} sx={{ padding: '32px', borderRadius: '16px', flex: 1, transition: 'all 0.3s ease', '&:hover': { transform: 'translateY(-8px)', boxShadow: '0 12px 40px rgba(0, 0, 0, 0.1)' } }}>
+              <FormatQuoteIcon sx={{ fontSize: '48px', color: 'secondary.main', marginBottom: '16px' }} />
+              <Typography variant="body1" sx={{ marginBottom: '24px', fontStyle: 'italic', lineHeight: 1.8, color: 'text.secondary' }}>"As a recruiter, HireHood has been a game-changer. We found exceptional talent quickly and efficiently. Best hiring platform we've used!"</Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <Avatar sx={{ width: 56, height: 56, bgcolor: 'secondary.main', fontWeight: 600 }}>RK</Avatar>
+                <Box>
+                  <Typography variant="h6" sx={{ fontWeight: 600 }}>Rajesh Kumar</Typography>
+                  <Typography variant="body2" color="text.secondary">HR Manager</Typography>
+                </Box>
+              </Box>
+            </Paper>
+            <Paper elevation={2} sx={{ padding: '32px', borderRadius: '16px', flex: 1, transition: 'all 0.3s ease', '&:hover': { transform: 'translateY(-8px)', boxShadow: '0 12px 40px rgba(0, 0, 0, 0.1)' } }}>
+              <FormatQuoteIcon sx={{ fontSize: '48px', color: 'primary.main', marginBottom: '16px' }} />
+              <Typography variant="body1" sx={{ marginBottom: '24px', fontStyle: 'italic', lineHeight: 1.8, color: 'text.secondary' }}>"HireHood's career resources and job matching are outstanding. I found my perfect role in just 2 weeks. Highly recommend to everyone!"</Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <Avatar sx={{ width: 56, height: 56, bgcolor: 'primary.main', fontWeight: 600 }}>PP</Avatar>
+                <Box>
+                  <Typography variant="h6" sx={{ fontWeight: 600 }}>Priya Patel</Typography>
+                  <Typography variant="body2" color="text.secondary">Marketing Specialist</Typography>
+                </Box>
+              </Box>
+            </Paper>
+          </Stack>
+        </Box>
+        <Box sx={{ marginBottom: '80px' }}>
+          <Box sx={{ textAlign: 'center', marginBottom: '48px' }}>
+            <Typography variant="h3" sx={{ fontWeight: 700, fontSize: { xs: '2rem', md: '2.5rem' }, color: 'text.primary', marginBottom: '12px' }}>Why Choose HireHood?</Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '600px', marginX: 'auto' }}>Experience the difference with our comprehensive job search and hiring solutions</Typography>
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '24px', justifyContent: 'center' }}>
+            <Box sx={{ textAlign: 'center', flex: '1 1 200px', maxWidth: '250px' }}>
+              <Avatar sx={{ width: 80, height: 80, margin: '0 auto 24px', bgcolor: 'primary.lighter', color: 'primary.main' }}>
+                <CheckCircleIcon sx={{ fontSize: 40 }} />
+              </Avatar>
+              <Typography variant="h5" sx={{ fontWeight: 600, marginBottom: '12px' }}>Verified Jobs</Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>All postings from trusted companies</Typography>
+            </Box>
+            <Box sx={{ textAlign: 'center', flex: '1 1 200px', maxWidth: '250px' }}>
+              <Avatar sx={{ width: 80, height: 80, margin: '0 auto 24px', bgcolor: 'secondary.light', color: 'secondary.dark' }}>
+                <PeopleIcon sx={{ fontSize: 40 }} />
+              </Avatar>
+              <Typography variant="h5" sx={{ fontWeight: 600, marginBottom: '12px' }}>Expert Support</Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>Career counselors and resume experts</Typography>
+            </Box>
+            <Box sx={{ textAlign: 'center', flex: '1 1 200px', maxWidth: '250px' }}>
+              <Avatar sx={{ width: 80, height: 80, margin: '0 auto 24px', bgcolor: 'primary.lighter', color: 'primary.main' }}>
+                <SchoolIcon sx={{ fontSize: 40 }} />
+              </Avatar>
+              <Typography variant="h5" sx={{ fontWeight: 600, marginBottom: '12px' }}>Skill Training</Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>Industry-relevant courses</Typography>
+            </Box>
+            <Box sx={{ textAlign: 'center', flex: '1 1 200px', maxWidth: '250px' }}>
+              <Avatar sx={{ width: 80, height: 80, margin: '0 auto 24px', bgcolor: 'secondary.light', color: 'secondary.dark' }}>
+                <TrendingUpIcon sx={{ fontSize: 40 }} />
+              </Avatar>
+              <Typography variant="h5" sx={{ fontWeight: 600, marginBottom: '12px' }}>Career Growth</Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>Track your progress</Typography>
             </Box>
           </Box>
         </Box>
