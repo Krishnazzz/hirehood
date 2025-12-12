@@ -41,6 +41,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 export default function Home() {
   const companiesScrollerRef = useRef<HTMLDivElement>(null);
   const categoriesScrollerRef = useRef<HTMLDivElement>(null);
+  const rolesContainerRef = useRef<HTMLDivElement>(null);
   const [currentRoleSlide, setCurrentRoleSlide] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [locationQuery, setLocationQuery] = useState('');
@@ -146,6 +147,30 @@ export default function Home() {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  // Auto-advance role slides
+  useEffect(() => {
+    let isPaused = false;
+    const interval = setInterval(() => {
+      if (!isPaused) {
+        setCurrentRoleSlide((prev) => (prev + 1) % roleSlides.length);
+      }
+    }, 3000); // Change slide every 5 seconds
+
+    const container = rolesContainerRef.current;
+    if (container) {
+      container.addEventListener('mouseenter', () => (isPaused = true));
+      container.addEventListener('mouseleave', () => (isPaused = false));
+    }
+
+    return () => {
+      clearInterval(interval);
+      if (container) {
+        container.removeEventListener('mouseenter', () => {});
+        container.removeEventListener('mouseleave', () => {});
+      }
     };
   }, []);
 
@@ -493,12 +518,15 @@ export default function Home() {
                 </Typography>
               </Box>
 
-              <Box sx={{
-                flex: { xs: '1', md: '0 0 58%' },
-                padding: { xs: '16px', md: '24px' },
-                display: 'flex',
-                alignItems: 'center'
-              }}>
+              <Box
+                ref={rolesContainerRef}
+                sx={{
+                  flex: { xs: '1', md: '0 0 58%' },
+                  padding: { xs: '16px', md: '24px' },
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+              >
                 <Paper
                   elevation={3}
                   sx={{
