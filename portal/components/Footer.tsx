@@ -23,7 +23,7 @@ export default function Footer() {
 
   const testimonials = [
     {
-      text: "Hire Hood helped me find my dream job! The platform is so different.",
+      text: "HireHood helped me find my dream job! The platform is so different.",
       author: "Sarah K.",
       image: "https://via.placeholder.com/40x40"
     },
@@ -59,7 +59,7 @@ export default function Footer() {
                 <WorkIcon />
               </Avatar>
               <Typography variant="h6" sx={{ fontWeight: 700, color: 'primary.main' }}>
-                Hire Hood
+                HireHood
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8, mb: 2 }}>
@@ -249,7 +249,7 @@ export default function Footer() {
 
         <Box sx={{ textAlign: 'center' }}>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-            © 2024 Hire Hood. All rights reserved.
+            © 2024 HireHood. All rights reserved.
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, flexWrap: 'wrap' }}>
             <Chip label="Privacy Policy" size="small" variant="outlined" clickable sx={{ fontSize: '0.75rem' }} />
