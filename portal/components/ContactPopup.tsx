@@ -168,7 +168,23 @@ export default function ContactPopup() {
         <CloseIcon />
       </IconButton>
 
-      <DialogContent sx={{ padding: { xs: '32px 24px', sm: '48px 40px' } }}>
+      <DialogContent sx={{ 
+        padding: { xs: '32px 24px', sm: '48px 40px' },
+        '&::-webkit-scrollbar': {
+          width: '8px',
+        },
+        '&::-webkit-scrollbar-track': {
+          background: 'transparent',
+          borderRadius: '10px',
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: 'linear-gradient(135deg, #2563eb 0%, #10b981 100%)',
+          borderRadius: '10px',
+        },
+        '&::-webkit-scrollbar-thumb:hover': {
+          background: 'linear-gradient(135deg, #1d4ed8 0%, #059669 100%)',
+        },
+      }}>
         {!isSubmitted ? (
           <>
             {/* Header */}
