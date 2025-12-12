@@ -173,7 +173,7 @@ export default function Header() {
                 }
               }}
             >
-              Hire Hood
+              HireHood
             </Button>
           </Box>
 
