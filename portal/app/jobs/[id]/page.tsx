@@ -715,7 +715,7 @@ export default function JobDetailsPage() {
                     Job Overview
                   </Typography>
                   <Stack spacing={2.5}>
-                    <Box sx={{ display: 'flex', gap: 2 }}>
+                    <Box sx={{ display: 'flex', gap: 2 , alignItems: 'center' }} >
                       <CalendarTodayIcon sx={{ color: 'primary.main' }} />
                       <Box>
                         <Typography variant="body2" color="text.secondary">
@@ -731,7 +731,7 @@ export default function JobDetailsPage() {
                       </Box>
                     </Box>
                     <Divider />
-                    <Box sx={{ display: 'flex', gap: 2 }}>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                       <AccessTimeIcon sx={{ color: 'error.main' }} />
                       <Box>
                         <Typography variant="body2" color="text.secondary">
@@ -747,7 +747,7 @@ export default function JobDetailsPage() {
                       </Box>
                     </Box>
                     <Divider />
-                    <Box sx={{ display: 'flex', gap: 2 }}>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                       <PeopleIcon sx={{ color: 'secondary.main' }} />
                       <Box>
                         <Typography variant="body2" color="text.secondary">
@@ -759,7 +759,7 @@ export default function JobDetailsPage() {
                       </Box>
                     </Box>
                     <Divider />
-                    <Box sx={{ display: 'flex', gap: 2 }}>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                       <AttachMoneyIcon sx={{ color: 'success.main' }} />
                       <Box>
                         <Typography variant="body2" color="text.secondary">
@@ -780,7 +780,7 @@ export default function JobDetailsPage() {
                   <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
                     Contact Information
                   </Typography>
-                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                     <EmailIcon sx={{ color: 'primary.main', mt: 0.5 }} />
                     <Box>
                       <Typography variant="body2" color="text.secondary">
