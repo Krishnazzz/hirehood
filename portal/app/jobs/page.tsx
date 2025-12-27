@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useMemo } from 'react';
 import {
   Box,
@@ -537,20 +538,22 @@ export default function JobsPage() {
   );
 
   const JobCard = ({ job }: { job: Job }) => (
-    <Card
-      sx={{
-        height: '100%',
-        transition: 'all 0.3s ease',
-        borderRadius: '16px',
-        border: '1px solid',
-        borderColor: 'rgba(0,0,0,0.08)',
-        '&:hover': {
-          transform: 'translateY(-8px)',
-          boxShadow: '0 12px 32px rgba(0,0,0,0.12)',
-          borderColor: 'primary.main',
-        },
-      }}
-    >
+    <Link href={`/jobs/${job.id}`} style={{ textDecoration: 'none' }}>
+      <Card
+        sx={{
+          height: '100%',
+          transition: 'all 0.3s ease',
+          borderRadius: '16px',
+          border: '1px solid',
+          borderColor: 'rgba(0,0,0,0.08)',
+          cursor: 'pointer',
+          '&:hover': {
+            transform: 'translateY(-8px)',
+            boxShadow: '0 12px 32px rgba(0,0,0,0.12)',
+            borderColor: 'primary.main',
+          },
+        }}
+      >
       <CardContent sx={{ padding: 3 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
           <Box sx={{ display: 'flex', gap: 2 }}>
@@ -672,10 +675,11 @@ export default function JobsPage() {
             },
           }}
         >
-          Apply Now
+          View Details
         </Button>
       </CardContent>
     </Card>
+    </Link>
   );
 
   return (
