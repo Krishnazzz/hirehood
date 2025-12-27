@@ -42,6 +42,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import PeopleIcon from '@mui/icons-material/People';
+import Hero1 from '@/components/Hero1';
 
 export default function Home() {
   const companiesScrollerRef = useRef<HTMLDivElement>(null);
@@ -51,7 +52,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [locationQuery, setLocationQuery] = useState('');
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // treat 'sm' and below as mobile
 
   // Auto-scroll for companies
   useEffect(() => {
@@ -236,9 +237,17 @@ export default function Home() {
     ],
   ];
 
+  // Show 4 roles on small screens and 6 on larger screens
+  const visibleRoles = isMobile ? roleSlides[currentRoleSlide].slice(0, 4) : roleSlides[currentRoleSlide].slice(0, 6);
+
   return (
     <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
-      <Container maxWidth="lg" sx={{ paddingTop: '48px', paddingBottom: '48px', paddingLeft: '24px', paddingRight: '24px' }}>
+      {/* Hero with Floating Tags */}
+      
+      {/* Hero with Card Swap */}
+      <Hero1 />
+      
+      <Container maxWidth="lg" sx={{ paddingTop: '48px', paddingBottom: '48px', paddingLeft: { xs: 0, sm: '24px' }, paddingRight: { xs: 0, sm: '24px' } }}>
         {/* Hero Section */}
         <Fade in timeout={800}>
           <Box sx={{ textAlign: 'center', marginBottom: '80px', position: 'relative' }}>
@@ -611,11 +620,13 @@ export default function Home() {
                     borderRadius: '12px',
                     width: '100%',
                     backgroundColor: 'white',
+                    minHeight: { xs: 360, md: 320 }, // fixed container height to avoid layout shifts
+                    boxSizing: 'border-box',
                   }}
                 >
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
-                    {roleSlides[currentRoleSlide].map((role, index) => (
-                      <Box key={index} sx={{ width: { xs: '100%', sm: 'calc(50% - 8px)' } }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignContent: 'flex-start', height: '100%' }}>
+                    {visibleRoles.map((role, index) => (
+                      <Box key={index} sx={{ width: { xs: 'calc(50% - 8px)', sm: 'calc(50% - 8px)', md: 'calc(33.333% - 16px)' } }}>
                         <Card
                           component={Link}
                           href={`/jobs?search=${encodeURIComponent(role.role)}`}
@@ -625,6 +636,10 @@ export default function Home() {
                             transition: 'all 0.3s ease',
                             background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
                             borderColor: 'rgba(0,0,0,0.08)',
+                            height: { xs: 160, md: 140 }, // uniform card height
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
                             '&:hover': {
                               boxShadow: '0 8px 24px rgba(25,118,210,0.15)',
                               transform: 'translateY(-4px)',
@@ -638,6 +653,12 @@ export default function Home() {
                         >
                           <CardContent sx={{
                             position: "relative",
+                            height: '100%',
+                            boxSizing: 'border-box',
+                            padding: '16px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
                             "&::before": {
                               content: '""',
                               position: "absolute",
@@ -654,7 +675,11 @@ export default function Home() {
                             <Typography variant="h6" sx={{
                               fontWeight: 600,
                               fontSize: '1rem',
-                              marginBottom: '4px'
+                              marginBottom: '4px',
+                              display: '-webkit-box',
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical',
+                              overflow: 'hidden',
                             }}>
                               {role.role}
                             </Typography>
