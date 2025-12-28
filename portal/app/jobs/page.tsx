@@ -59,6 +59,7 @@ interface Job {
   company_logo: string;
   location: string;
   job_type: 'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Remote';
+  work_type: 'In Office' | 'Remote' | 'Field Work' | 'Hybrid' | 'Internship';
   experience_level: 'Entry Level' | 'Mid Level' | 'Senior Level' | 'Lead' | 'Executive';
   salary_min: number;
   salary_max: number;
@@ -84,6 +85,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=TC',
     location: 'Bangalore, India',
     job_type: 'Full-time',
+    work_type: 'Hybrid',
     experience_level: 'Senior Level',
     salary_min: 1500000,
     salary_max: 2500000,
@@ -106,6 +108,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=DH',
     location: 'Mumbai, India',
     job_type: 'Full-time',
+    work_type: 'In Office',
     experience_level: 'Mid Level',
     salary_min: 800000,
     salary_max: 1200000,
@@ -128,6 +131,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=AP',
     location: 'Hyderabad, India',
     job_type: 'Full-time',
+    work_type: 'In Office',
     experience_level: 'Senior Level',
     salary_min: 2000000,
     salary_max: 3000000,
@@ -150,6 +154,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=BW',
     location: 'Delhi, India',
     job_type: 'Full-time',
+    work_type: 'Hybrid',
     experience_level: 'Lead',
     salary_min: 1200000,
     salary_max: 1800000,
@@ -172,6 +177,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=CT',
     location: 'Pune, India',
     job_type: 'Full-time',
+    work_type: 'Remote',
     experience_level: 'Mid Level',
     salary_min: 1000000,
     salary_max: 1600000,
@@ -194,6 +200,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=WW',
     location: 'Remote',
     job_type: 'Remote',
+    work_type: 'Remote',
     experience_level: 'Entry Level',
     salary_min: 500000,
     salary_max: 800000,
@@ -216,6 +223,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=IL',
     location: 'Bangalore, India',
     job_type: 'Full-time',
+    work_type: 'Hybrid',
     experience_level: 'Senior Level',
     salary_min: 2500000,
     salary_max: 3500000,
@@ -238,6 +246,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=AG',
     location: 'Chennai, India',
     job_type: 'Full-time',
+    work_type: 'In Office',
     experience_level: 'Mid Level',
     salary_min: 900000,
     salary_max: 1400000,
@@ -260,6 +269,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=SN',
     location: 'Noida, India',
     job_type: 'Full-time',
+    work_type: 'Hybrid',
     experience_level: 'Mid Level',
     salary_min: 1100000,
     salary_max: 1700000,
@@ -282,6 +292,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=CC',
     location: 'Remote',
     job_type: 'Part-time',
+    work_type: 'Remote',
     experience_level: 'Entry Level',
     salary_min: 300000,
     salary_max: 500000,
@@ -304,6 +315,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=CP',
     location: 'Mumbai, India',
     job_type: 'Contract',
+    work_type: 'In Office',
     experience_level: 'Mid Level',
     salary_min: 1000000,
     salary_max: 1500000,
@@ -326,6 +338,7 @@ const dummyJobs: Job[] = [
     company_logo: 'https://via.placeholder.com/80?text=AI',
     location: 'Bangalore, India',
     job_type: 'Full-time',
+    work_type: 'Hybrid',
     experience_level: 'Senior Level',
     salary_min: 2200000,
     salary_max: 3200000,
@@ -356,11 +369,15 @@ export default function JobsPage() {
   // Filters
   const [selectedJobTypes, setSelectedJobTypes] = useState<string[]>([]);
   const [selectedExperienceLevels, setSelectedExperienceLevels] = useState<string[]>([]);
+  const [selectedTimingTypes, setSelectedTimingTypes] = useState<string[]>([]);
+  const [selectedWorkTypes, setSelectedWorkTypes] = useState<string[]>([]);
   const [salaryRange, setSalaryRange] = useState<number[]>([0, 4000000]);
   const [sortBy, setSortBy] = useState('recent');
 
   const jobTypes = ['Full-time', 'Part-time', 'Contract', 'Internship', 'Remote'];
   const experienceLevels = ['Entry Level', 'Mid Level', 'Senior Level', 'Lead', 'Executive'];
+  const timingTypes = ['Full Time', 'Part Time', 'Contract', 'Internship'];
+  const workTypes = ['In Office', 'Remote', 'Field Work', 'Hybrid', 'Internship'];
 
   // Filter and search logic
   const filteredJobs = useMemo(() => {
@@ -376,9 +393,13 @@ export default function JobsPage() {
       const matchesExperience = selectedExperienceLevels.length === 0 || 
                                selectedExperienceLevels.includes(job.experience_level);
       
+      const matchesTiming = selectedTimingTypes.length === 0 || selectedTimingTypes.includes(job.job_type);
+      
+      const matchesWorkType = selectedWorkTypes.length === 0 || selectedWorkTypes.includes(job.work_type);
+      
       const matchesSalary = job.salary_max >= salaryRange[0] && job.salary_min <= salaryRange[1];
       
-      return matchesSearch && matchesLocation && matchesJobType && matchesExperience && matchesSalary;
+      return matchesSearch && matchesLocation && matchesJobType && matchesExperience && matchesTiming && matchesWorkType && matchesSalary;
     });
 
     // Sorting
@@ -393,7 +414,7 @@ export default function JobsPage() {
     }
 
     return filtered;
-  }, [searchQuery, locationQuery, selectedJobTypes, selectedExperienceLevels, salaryRange, sortBy]);
+  }, [searchQuery, locationQuery, selectedJobTypes, selectedExperienceLevels, selectedTimingTypes, selectedWorkTypes, salaryRange, sortBy]);
 
   const toggleSaveJob = (jobId: number) => {
     setSavedJobs(prev => 
@@ -413,9 +434,23 @@ export default function JobsPage() {
     );
   };
 
+  const handleTimingChange = (timing: string) => {
+    setSelectedTimingTypes(prev =>
+      prev.includes(timing) ? prev.filter(t => t !== timing) : [...prev, timing]
+    );
+  };
+
+  const handleWorkTypeChange = (workType: string) => {
+    setSelectedWorkTypes(prev =>
+      prev.includes(workType) ? prev.filter(w => w !== workType) : [...prev, workType]
+    );
+  };
+
   const clearFilters = () => {
     setSelectedJobTypes([]);
     setSelectedExperienceLevels([]);
+    setSelectedTimingTypes([]);
+    setSelectedWorkTypes([]);
     setSalaryRange([0, 4000000]);
     setSortBy('recent');
   };
@@ -496,6 +531,34 @@ export default function JobsPage() {
                 />
               }
               label={level}
+            />
+          ))}
+        </FormGroup>
+      </Box>
+
+
+      <Divider sx={{ mb: 3 }} />
+
+      {/* Type */}
+      <Box sx={{ mb: 4 }}>
+        <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
+          Type
+        </Typography>
+        <FormGroup>
+          {workTypes.map(workType => (
+            <FormControlLabel
+              key={workType}
+              control={
+                <Checkbox
+                  checked={selectedWorkTypes.includes(workType)}
+                  onChange={() => handleWorkTypeChange(workType)}
+                  sx={{
+                    color: 'primary.main',
+                    '&.Mui-checked': { color: 'primary.main' },
+                  }}
+                />
+              }
+              label={workType}
             />
           ))}
         </FormGroup>
