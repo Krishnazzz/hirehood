@@ -60,6 +60,7 @@ interface Job {
   company_logo: string;
   location: string;
   job_type: 'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Remote';
+  work_type: 'In Office' | 'Remote' | 'Field Work' | 'Hybrid' | 'Internship';
   experience_level: 'Entry Level' | 'Mid Level' | 'Senior Level' | 'Lead' | 'Executive';
   salary_min: number;
   salary_max: number;
@@ -89,6 +90,7 @@ const dummyJob: Job = {
   company_logo: 'https://via.placeholder.com/120?text=TC',
   location: 'Bangalore, India',
   job_type: 'Full-time',
+  work_type: 'Hybrid',
   experience_level: 'Senior Level',
   salary_min: 1500000,
   salary_max: 2500000,
@@ -316,6 +318,7 @@ export default function JobDetailsPage() {
                   {!isMobile && (
                     <Box sx={{ display: 'flex', gap: 1 }}>
                       <IconButton 
+                        size="large"
                         onClick={() => setIsSaved(!isSaved)}
                         sx={{ 
                           bgcolor: 'white',
@@ -330,6 +333,7 @@ export default function JobDetailsPage() {
                         )}
                       </IconButton>
                       <IconButton 
+                        size="large"
                         sx={{ 
                           bgcolor: 'white',
                           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
@@ -406,15 +410,6 @@ export default function JobDetailsPage() {
                       <Typography component="span" variant="body2" color="text.secondary" sx={{ ml: 1 }}>
                         per year
                       </Typography>
-                    </Typography>
-                  </Box>
-                  <Divider orientation="vertical" flexItem />
-                  <Box sx={{ textAlign: 'center' }}>
-                    <Typography variant="h6" sx={{ fontWeight: 700, color: 'secondary.main' }}>
-                      {job.applicants}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Applicants
                     </Typography>
                   </Box>
                   <Divider orientation="vertical" flexItem />
@@ -698,7 +693,7 @@ export default function JobDetailsPage() {
                     onClick={() => setIsSaved(!isSaved)}
                     sx={{
                       borderRadius: '12px',
-                      py: 1,
+                      py: 1.5,
                       textTransform: 'none',
                       fontWeight: 600,
                     }}
@@ -743,18 +738,6 @@ export default function JobDetailsPage() {
                             day: 'numeric',
                             year: 'numeric'
                           })}
-                        </Typography>
-                      </Box>
-                    </Box>
-                    <Divider />
-                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                      <PeopleIcon sx={{ color: 'secondary.main' }} />
-                      <Box>
-                        <Typography variant="body2" color="text.secondary">
-                          Applicants
-                        </Typography>
-                        <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                          {job.applicants} people
                         </Typography>
                       </Box>
                     </Box>
